@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!----======== CSS ======== -->
+    <!-- <link rel="stylesheet" href="style.css"> -->
+
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <title>My Form</title>
+</head>
+
+<body>
+    <div class="container">
+        <header>Semester Details</header>
+
+        <form action="#">
+            <div class="form first">
+                <div class="details personal">
+                    <!-- <span class="title">Personal Details</span> -->
+
+                    <div class="fields">
+
+                        <div class="details ID">
+                            <span class="title">Semester I</span>
+
+                            <div class="fields">
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Applied Mathematics I" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Engineering Chemistry" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Engineering Drawing" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Elements of Electrical and Electronics Engineering"
+                                        disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Programming in C" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Engineering Drawing Laboratory" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Engineering Chemistry Laboratory" disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text"
+                                        placeholder="Elements of Electrical and Electronics Engineering Laboratory"
+                                        disabled>
+                                </div>
+
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="Workshop I" disabled>
+                                </div> 
+                                
+                                <div class="subject">
+                                    <label></label>
+                                    <input type="text" placeholder="roll no">
+                                </div> 
+                                <div class="optional_subject">
+                                    <select id="choice" name="choice" required>
+                                        <option disabled selected>Exposure Course Opted</option>
+                                        <option value="Indian_Classical_Music">Indian Classical Music (Vocal)</option>
+                                        <option value="Praveshika">Tabla Prarambhik: Praveshika</option>
+                                        <option value="Creative_Writing">Creative Writing</option>
+                                        <option value="Pro_Zumba">Pro Zumba</option>
+                                        <option value="Bharatnatyam">Indian Classical Dance: Bharatnatyam</option>
+                                        <option value="Painting_and_Sketching">Painting and Sketching</option>
+                                        <option value="Ancient_Wisdom_for_Success">Ancient Wisdom for Success
+                                            (Gita For Modern Times)</option>
+                                        <option value="yoga">Basics of Yoga</option>
+                                        <option value="Chess">A chess course for beginners and intermediate students</option>
+                                        <option value="Amati">Amati</option>
+                                        <option value="Broadcast_Journalism">Broadcast Journalism</option>
+                                        <option value="Short_film_appreciation">Short film appreciation</option>
+                                        <option value="Basic_Couse_of_Harmonium_EKeyboard">Basic Course of Harmonium / Electronic Keyboard</option>
+                                        <option value="Faux_calligraphy">Faux calligraphy</option>
+                                        <option value="Art_of_Storytelling">Art of Storytelling</option>
+                                        <option value="Theatre_Acting">Theatre Acting</option>
+                                        <option value="Cultures_of_the_World">Cultures of the World 'From Egypt to Japan'</option>
+                                        <option value="Football">Football</option>
+                                        <option value="Badminton">Badminton</option>
+                                        <option value="Table_Tennis">Table Tennis</option>
+                                        <option value="Athletics">Athletics</option>
+                                        <option value="Squash">Squash</option>
+                                        <option value="Cricket">Cricket</option>
+                                        <option value="Taekwondo">Taekwondo</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <br>
+                                <div class="grade">
+                                    <!-- <label>GPA</label> <br> -->
+                                    <input type="number" placeholder="Enter GPA" step=".01">
+                                </div>
+                            </div>
+                            <button class="sumbit">
+                                <span class="btnText">Submit</span>
+                                <i class="uil uil-navigator"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
