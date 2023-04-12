@@ -16,7 +16,7 @@
     <div class="container">
         {% if user.is_authenticated %}
             <p>Welcome back, {{ user.username }}!</p>
-            <a href="{% url 'logout' %}">logout</a>
+            <a href="{% url 'logout' %}">logout ki nishani</a>
         {% else %}
             <a href="{% provider_login_url 'google'%}?next=/">login with google</a>
         {% endif %}
