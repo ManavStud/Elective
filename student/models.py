@@ -13,3 +13,5 @@ class student(models.Model):
     gpa=models.FloatField()
 
 
+
+

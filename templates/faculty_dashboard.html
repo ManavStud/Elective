@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective</title>
+    
+    <link rel="stylesheet" href="{% static './css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-utilities.css' %}">
+</head>
+
+<style>
+    #main_container {
+        padding: 60px 15px 0;
+    }
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-dark bg-dark fixed-top" aria-label="Dark offcanvas navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <main style="margin:0 40px;"><a class="navbar-brand" href="#">LOGO</a></main>
+
+
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+                    aria-labelledby="offcanvasNavbarDarkLabel">
+                    <div class="offcanvas-header">
+                        <h4 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Menu</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1">
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 1</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big><a class="nav-link" aria-current="page" href="#">Semester 2</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 3</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 4</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 5</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 6</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 7</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big><a class="nav-link" aria-current="page" href="#">Semester 8</a></big>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <main class="flex-shrink-0 my-5">
+        <div class="container" id="main_container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm text-center">
+                        <img src="https://images.pexels.com/photos/2292837/pexels-photo-2292837.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="Freshman">
+                        <div class="card-body">
+                            <h4>Batch 2019-2023</h4>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester VII</a>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester VIII</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm text-center">
+                        <img src="./images/junior.png" alt="Freshman">
+                        <div class="card-body">
+                            <h4>Batch 2020-2024</h4>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester V</a>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester VI</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm text-center">
+                        <img src="./images/sophomore.png" alt="Freshman">
+                        <div class="card-body">
+                            <h4>Batch 2021-2025</h4>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester I</a>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester II</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card shadow-sm text-center">
+                        <img src="./images/freshman.jpg" alt="Freshman">
+                        <div class="card-body">
+                            <h4>Batch 2022-2026</h4>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester I</a>
+                            <a href="#" class="card-link btn btn-sm btn-secondary">Semester II</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static './js/bootstrap.js' %}"></script>
+    <script src="{% static './js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/1ad43aed0a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -15,3 +15,20 @@ nextBtn.addEventListener("click", () => {
 })
 
 backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+
+function disableOption(selectedOption) 
+        {
+            var options = document.getElementsByTagName('option');
+            for (var i = 0; i < options.length; i++) 
+            {
+                if (options[i].value == selectedOption.value && !selectedOption.disabled) 
+                {
+                options[i].disabled = true;
+                } 
+                else if (options[i].value != selectedOption.value && selectedOption.disabled) 
+                {
+                    options[i].disabled = false;
+                }
+            }
+        }
+

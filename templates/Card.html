@@ -1,0 +1,361 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective</title>
+    <link rel="stylesheet" href="{% static './css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-utilities.css' %}">
+</head>
+
+<style>
+    /* for sticky footer */
+    #main_container {
+        padding: 60px 15px 0;
+    }
+
+    .user_image {
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+
+    .student_card {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 1.5em;
+    }
+
+    #myCarousel {
+        margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-inner .carousel-item>div {
+            display: none;
+        }
+
+        .carousel-inner .carousel-item>div:first-child {
+            display: block;
+        }
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-start,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        display: flex;
+    }
+
+    @media (min-width: 768px) {
+
+        .carousel-inner .carousel-item-right.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-item-next:not(.carousel-item-start) {
+            transform: translateX(25%) !important;
+        }
+
+        .carousel-inner .carousel-item-left.active,
+        .carousel-item-prev:not(.carousel-item-end),
+        .active.carousel-item-start,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+
+        .carousel-item-next.carousel-item-start,
+        .active.carousel-item-end {
+            transform: translateX(0) !important;
+        }
+
+        .carousel-inner .carousel-item-prev,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+    }
+</style>
+
+<body class="d-flex flex-column h-100">
+    {% include 'nav.html' %} 
+    <!-- Begin page content -->
+    <main class="flex-shrink-0 my-5">
+        <div class="container" id="main_container">
+            <div class="student_card w-100 h-100">
+                <div class="d-flex mb-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="user image"
+                        class="user_image">
+                    <section class="ps-5 align-text-bottom">
+                        <h5 class="mb-n2">Ambaprasad Paresh Pathak</h5>
+                        <span>Computer Engineering</span>
+                    </section>
+                </div>
+
+                <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel">
+                    <div class="carousel-inner w-100">
+                        <div class="carousel-item active">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center text-center">Semester 1</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 2</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 3</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 4</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 5</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 6</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 7</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="col-md-4">
+                                <!-- <div class="card card-body p-0"> -->
+                                    <div class="card mb-4 rounded-3 shadow-sm">
+                                        <div class="card-header py-3">
+                                            <h4 class="my-0 fw-normal text-center">Semester 8</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Applied Mathematics I</li>
+                                                <li>Engineering Chemistry</li>
+                                                <li>Engineering Drawing</li>
+                                                <li>Elements of Electrical & Electronics Engineering</li>
+                                                <li>Programming in C</li>
+                                                <li>Workshop I</li>
+                                            </ul>
+                                            <h5>Exposure Course: </h5>
+                                            <ul class="list mt-2 mb-4">
+                                                <li>Indian Classical Dance:
+                                                    Bharatnatyam</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+            <p class="text-white text-center">Team BMC</p>
+        </div>
+    </footer>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+
+    <script>
+        $('.carousel .carousel-item').each(function () {
+            var minPerSlide = 4;
+            var next = $(this).next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            next.children(':first-child').clone().appendTo($(this));
+
+            for (var i = 0; i < minPerSlide; i++) { next = next.next(); if (!next.length) { next = $(this).siblings(':first'); } next.children(':first-child').clone().appendTo($(this)); }
+        });
+    </script>
+    <script src="{% static './js/bootstrap.js' %}"></script>
+    <script src="{% static './js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/1ad43aed0a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
