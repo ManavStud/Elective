@@ -2,8 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from student.models import student
 from django.conf import settings
-from subject.models import subject
-
+from subject.models import subject,Exposure_Courses
 def login(request):
     context={
         'google_client_id': settings.GOOGLE_CLIENT_ID,
@@ -68,29 +67,115 @@ def faculty_dashboard(request):
     return render(request, 'faculty_dashboard.html')
 
 
-
 def register(request):
-    subjects = subject.objects.filter(sem=5).values('sub_id','sub_name')
-    students = student.objects.filter(roll_no=16010121819).values('opt_course')
-    electives = []
-    for stud in students:
-        #print(stud)
-        electives.append(stud['opt_course'])
 
+    
+    
+    compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
+    compulsory_sem1 = list(compulsory_list)
+    print("Sem1: = ",compulsory_sem1)
+    
+    compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
+    compulsory_sem2 = list(compulsory_list)
+    print("Sem2: = ",compulsory_sem2)
+    
+    compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
+    compulsory_sem3 = list(compulsory_list)
+    print("Sem3: = ",compulsory_sem3)
+    
+    compulsory_list = subject.objects.filter(sem=4,type='N').values_list('sub_name',flat=True)
+    compulsory_sem4 = list(compulsory_list)
+    print("Sem4: = ",compulsory_sem4)
+    
+    compulsory_list = subject.objects.filter(sem=5,type='N').values_list('sub_name',flat=True)
+    compulsory_sem5 = list(compulsory_list)
+    print("Sem5: = ",compulsory_sem5)
+    
+    compulsory_list = subject.objects.filter(sem=6,type='N').values_list('sub_name',flat=True)
+    compulsory_sem6 = list(compulsory_list)
+    print("Sem6: = ",compulsory_sem6)
+    
+    compulsory_list = subject.objects.filter(sem=7,type='N').values_list('sub_name',flat=True)
+    compulsory_sem7 = list(compulsory_list)
+    print("Sem7: = ",compulsory_sem7)
+    
+    compulsory_list = subject.objects.filter(sem=8,type='N').values_list('sub_name',flat=True)
+    compulsory_sem8 = list(compulsory_list)
+    print("Sem8: = ",compulsory_sem8)
+    name_str = student.objects.filter(roll_no=16010121813).values('stud_name')
+    name = name_str[0]['stud_name']
+    print("Name = ",name)
+    
+    dept_str = student.objects.filter(roll_no=16010121813).values('dept')
+    dept = dept_str[0]['dept']
+    print("Department = ",dept)
+
+
+    subjects = subject.objects.filter(sem=5,type='DE').values('sub_id','sub_name')
+    s5e = [subject['sub_name'] for subject in subjects]
+    students = student.objects.filter(roll_no=16010121813).values('opt_course')
+    opt_courses = students[0]['opt_course'].split(',')
+    opt_courses_flat = [course.strip() for course in opt_courses]
     sem5_elective = ""
-
-    split_list = [s.split(', ') for s in electives]
-    #print(electives)
-    for elective in electives:
-        separate_strings = elective.split(', ')
-    print(separate_strings)
-    for subjectx in subjects:
-        for opt in separate_strings:
-            if subjectx['sub_name'] == opt:
-                sem5_elective = opt
-    #print(students)
-    #print(split_list)
-    print("Sem5 = ",sem5_elective)
+    for s1 in opt_courses_flat:
+        for s2 in s5e:
+            if(s1 == s2):
+                sem5_elective = s1
+                break
+    print("Sem5 Elective = ",sem5_elective)
+    
+    
+    subjects = subject.objects.filter(sem=6,type='DE').values('sub_id','sub_name')
+    s5e = [subject['sub_name'] for subject in subjects]
+    sem6_elective = ""
+    for s1 in opt_courses_flat:
+        for s2 in s5e:
+            if(s1 == s2):
+                sem6_elective = s1
+                break
+    print("Sem6 Elective = ",sem6_elective)
+    
+    subjects = subject.objects.filter(sem=7,type='DE').values('sub_id','sub_name')
+    s5e = [subject['sub_name'] for subject in subjects]
+    sem7_elective = ""
+    for s1 in opt_courses_flat:
+        for s2 in s5e:
+            if(s1 == s2):
+                sem7_elective = s1
+                break
+    print("Sem7 Elective = ",sem7_elective)
+    
+    subjects = subject.objects.filter(sem=8,type='DE').values('sub_id','sub_name')
+    s5e = [subject['sub_name'] for subject in subjects]
+    sem8_elective = ""
+    for s1 in opt_courses_flat:
+        for s2 in s5e:
+            if(s1 == s2):
+                sem8_elective = s1
+                break
+    print("Sem8 Elective = ",sem8_elective)
+    
+    exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
+    exposure1 = list(exp1)
+    #print(exposure1)
+    for s1 in opt_courses_flat:
+        for s2 in exposure1:
+            if(s1 == s2):
+                exp1 = s1
+                break
+    print("Sem1 Exposure Course = ",exp1)
+    
+    exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
+    exposure2 = list(exp2)
+    #print(exposure2)
+    for s1 in opt_courses_flat:
+        for s2 in exposure2:
+            if(s1 == s2):
+                exp2 = s1
+                break
+    print("Sem2 Exposure Course = ",exp2)
+    
+    
     if request.method == 'POST':
         roll_no = request.POST.get('roll_no')
         stud_name = request.POST.get('stud_name')
