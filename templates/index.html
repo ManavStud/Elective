@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
-{% load socialaccount %}
+<!-- {% load socialaccount %} -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
             <p>Welcome back, {{ user.username }}!</p>
             <a href="{% url 'logout' %}">logout ki nishani</a>
         {% else %}
-            <a href="{% provider_login_url 'google'%}?next=/">login with google</a>
+            <a href="#">login with google</a>
         {% endif %}
         <header>Semester Details</header>
         <form action="#">

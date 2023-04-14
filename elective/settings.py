@@ -12,7 +12,7 @@ SECRET_KEY = 'django-insecure-uv7$&+@+ke230@j=oafx&xmwvsjlfhvwo&$358@19u&15nu15y
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-SOCIALACCOUNT_LOGIN_NO_GET=True
+# SOCIALACCOUNT_LOGIN_NO_GET=True
 
 DEBUG = True
 
@@ -70,17 +70,17 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 #         }
 #     }
 # }
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
 
 
 MIDDLEWARE = [
@@ -177,8 +177,8 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
 # SOCIALACCOUNT_LOGIN_ON_GET=True
-GOOGLE_CLIENT_ID = '918039993254-gargc1v502lgpvo3ok19rjoe6qto2nap.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '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'
-GOOGLE_AUTH_REDIRECT_URI = 'http://localhost:8000/google-auth-redirect/'
+# # SOCIALACCOUNT_LOGIN_ON_GET=True
+# GOOGLE_CLIENT_ID = '918039993254-gargc1v502lgpvo3ok19rjoe6qto2nap.apps.googleusercontent.com'
+# GOOGLE_CLIENT_SECRET = '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'
+# GOOGLE_AUTH_REDIRECT_URI = 'http://localhost:8000/google-auth-redirect/'
