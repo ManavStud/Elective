@@ -137,22 +137,20 @@ def register(request):
     
     subjects = subject.objects.filter(sem=7,type='DE').values('sub_id','sub_name')
     s5e = [subject['sub_name'] for subject in subjects]
-    sem7_elective = ""
+    sem7_elective = []
     for s1 in opt_courses_flat:
         for s2 in s5e:
             if(s1 == s2):
-                sem7_elective = s1
-                break
+                sem7_elective.append(s1)
     print("Sem7 Elective = ",sem7_elective)
     
     subjects = subject.objects.filter(sem=8,type='DE').values('sub_id','sub_name')
     s5e = [subject['sub_name'] for subject in subjects]
-    sem8_elective = ""
+    sem8_elective = []
     for s1 in opt_courses_flat:
         for s2 in s5e:
             if(s1 == s2):
-                sem8_elective = s1
-                break
+                sem8_elective.append(s1)
     print("Sem8 Elective = ",sem8_elective)
     
     exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
@@ -175,6 +173,8 @@ def register(request):
                 break
     print("Sem2 Exposure Course = ",exp2)
     
+    unique_entries = list(student.objects.values_list('hon_min', flat=True).distinct())
+    print(unique_entries)
     
     if request.method == 'POST':
         roll_no = request.POST.get('roll_no')
