@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h1>Profile Information</h1>
+    <p>Name: {{ profile_info.name }}</p>
+    <p>Email: {{ profile_info.email }}</p>
+    <img src="{{ profile_info.picture }}" alt="Profile Picture">
+</body>
+</html>

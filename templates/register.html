@@ -21,17 +21,14 @@
                         <div class="card-body p-md-5">
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-
                                     <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
-
                                     <form class="mx-1 mx-md-4" method="POST">
                                         {% csrf_token %}
                                         <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example1c">Your Roll No.</label>
-                                                <input type="text" id="roll_no" name="roll_no" class="form-control" />
-                                                
+                                                <input type="text" id="roll_no" name="roll_no" class="form-control" />                                                
                                             </div>
                                         </div>
 
@@ -40,11 +37,17 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your Name</label>
                                                 <input type="text" id="stud_name" name="stud_name" class="form-control" />
-
                                             </div>
                                         </div>
 
-                                                                            <!-- Example single danger button -->
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example3c">Your username</label>
+                                                <input type="text" id="username" name="username" class="form-control" />
+                                            </div>
+                                        </div>
+
                                         Your Department
                                         <div class="optional_subject">
                                             <select id="dept" name="dept" required>
@@ -58,7 +61,35 @@
                                         </div>
                                         <br>
 
-                                        Your Semester
+                                        Your Type
+                                        <div class="optional_subject">
+                                            <select id="utype" name="utype" required>
+                                                <option value="student">student</option>
+                                                <option value="faculty">faculty</option>
+                                                <option value="hod">hod</option>
+                                                <option value="coordinator">coordinator</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <br>
+
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1c">Your Password</label>
+                                                <input type="password" id="pass" name="pass" class="form-control" />
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center mb-4">
+                                            <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example1c">Confirm Password</label>
+                                                <input type="password" id="cpass" name="cpass" class="form-control" />
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- Your Semester
                                         <div class="optional_subject">
                                             <select id="sem_padd" name="sem_pass" required>
                                                 <option value="sem1">SEMESTER 1</option>
@@ -71,38 +102,38 @@
                                                 <option value="sem8">SEMESTER 8</option>
                                                 
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <br>
                                         
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">honors/minors</label>
                                                 <input type="text" id="hon_min" name="hon_min" class="form-control" />
 
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
-                                        Do you have KT?
+                                        <!-- Do you have KT?
                                         <div class="optional_subject">
                                             <select id="kt" name="kt" required>
                                                 <option value="yes">YES</option>
                                                 <option value="no">NO</option>                                                
                                             </select>
-                                        </div><br>
+                                        </div><br> -->
                                         
                                         
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">Your Joining Year</label>
                                                 <input type="text" id="admit_year" name="admit_year" class="form-control" />
 
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                         
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">opt course</label>
@@ -110,9 +141,9 @@
 
                                             </div>
                                         </div>
+                                         -->
                                         
-                                        
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <!-- <div class="d-flex flex-row align-items-center mb-4">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">GPA</label>
@@ -120,7 +151,7 @@
 
                                             </div>
                                         </div>
-                                        
+                                         -->
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" class="btn btn-primary btn-lg">Register</button>
                                         </div>

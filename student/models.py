@@ -1,5 +1,5 @@
 from django.db import models
-#from subject.models import subject
+from subject.models import subject
 
 class student(models.Model):
     roll_no= models.CharField(max_length=20, primary_key=True)
@@ -11,6 +11,8 @@ class student(models.Model):
     admit_year=models.CharField(max_length=4)
     opt_course=models.CharField(max_length=500)
     gpa=models.FloatField()
+    class Meta:
+        app_label = 'student'
 
 
 
