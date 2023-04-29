@@ -22,7 +22,7 @@
 
 <body>
     {% include 'nav.html' %} 
-
+    {% if user.is_authenticated %}
     <main class="flex-shrink-0 my-5">
         <div class="container" id="main_container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -31,6 +31,7 @@
                         <img src="https://images.pexels.com/photos/2292837/pexels-photo-2292837.jpeg?auto=compress&cs=tinysrgb&w=600"
                             alt="Freshman">
                         <div class="card-body">
+                            
                             <h4>Batch 2019-2023</h4>
                             <a href="#" class="card-link btn btn-sm btn-secondary">Semester VII</a>
                             <a href="#" class="card-link btn btn-sm btn-secondary">Semester VIII</a>
@@ -77,6 +78,9 @@
     <script src="{% static './js/bootstrap.js' %}"></script>
     <script src="{% static './js/bootstrap.bundle.js' %}"></script>
     <script src="https://kit.fontawesome.com/1ad43aed0a.js" crossorigin="anonymous"></script>
+    {% else %}
+    <a href="#">login with google</a>
+    {% endif %}
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from student.models import student
 from django.conf import settings
@@ -8,27 +8,25 @@ from googleapiclient.discovery import build
 
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
+from student.models import faculty
+
 
 def user_info(request):
     # Retrieve the access token from the session
     access_token = request.session.get('access_token')
-
     # Check if access_token is present in the session
     if access_token:
         try:
             # Build the Google Drive API client
             credentials = Credentials.from_authorized_user_info(info=access_token)
             service = build('drive', 'v3', credentials=credentials)
-
             # Get the user's storage information
             about = service.about().get(fields='storageQuota').execute()
             total_storage = about['storageQuota']['limit']
             used_storage = about['storageQuota']['usage']
-
             # Render the user_info.html template with the retrieved storage details
             context = {'total_storage': total_storage, 'used_storage': used_storage}
             return render(request, 'user_info.html', context)
-
         except HttpError as error:
             # Handle any errors that occur while accessing the Google Drive API
             print(f'An error occurred: {error}')
@@ -91,12 +89,18 @@ def login(request):
     #     'google_client_id': settings.GOOGLE_CLIENT_ID,
     #     'google_client_secret': settings.GOOGLE_CLIENT_SECRET
     # }
+    
     return render(request,'login.html')
 
 def nav(request):
     return render(request, 'nav.html')
 
 def index(request):
+    if request.user.is_authenticated:
+        # Check if user's email is in the faculty table
+        if faculty.objects.filter(fac_email=request.user.email).exists():
+            # Redirect user to faculty_dashboard page
+            return redirect('faculty_dashboard')
     compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
     compulsory_sem1 = list(compulsory_list)
     print("Sem1: = ",compulsory_sem1)    
@@ -104,7 +108,7 @@ def index(request):
     context = {
         'my_list': my_list,
         'compulsory_sem1':compulsory_sem1,
-            }
+        }
     return render(request, 'index.html', context)
 
 def sem2(request):
@@ -116,7 +120,7 @@ def sem2(request):
     context = {
         'my_list': my_list,
         'compulsory_sem2':compulsory_sem2
-            }
+        }
     return render(request, 'sem2.html', context)
 
 
@@ -210,7 +214,7 @@ def sem8(request):
     dept_str = student.objects.filter(roll_no=16010121813).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
-    
+    #kumbalitrance
     my_list = ['AI', 'ML', 'DSIP','IS','CC']
     context = {'my_list': my_list}
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
@@ -232,7 +236,12 @@ def course_selection(request):
     return render(request, 'course_selection.html')
 
 def faculty_dashboard(request):
-    return render(request, 'faculty_dashboard.html')
+    if request.user.is_authenticated:
+        # Check if user's email is in the faculty table
+        if faculty.objects.filter(fac_email=request.user.email).exists():
+            # Display faculty dashboard
+            return render(request, 'faculty_dashboard.html')
+    return render(request, 'card.html')
 
 
 def register(request):

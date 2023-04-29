@@ -15,5 +15,11 @@ class student(models.Model):
         app_label = 'student'
 
 
+class faculty(models.Model):
+    fac_name=models.CharField(max_length=100)
+    fac_email=models.EmailField(max_length=100)
+    fc_dept=models.CharField(max_length=5)
+
+
 
 
