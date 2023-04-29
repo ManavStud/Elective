@@ -241,7 +241,7 @@ def faculty_dashboard(request):
         if faculty.objects.filter(fac_email=request.user.email).exists():
             # Display faculty dashboard
             return render(request, 'faculty_dashboard.html')
-    return render(request, 'card.html')
+    return redirect('card')
 
 
 def register(request):
