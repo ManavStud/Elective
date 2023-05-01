@@ -95,6 +95,9 @@ def login(request):
 def nav(request):
     return render(request, 'nav.html')
 
+def stud_pref(request):
+    return render(request, "student_pref.html")
+
 def index(request):
     if request.user.is_authenticated:
         # Check if user's email is in the faculty table
