@@ -134,7 +134,13 @@ DATABASES = {
     }
 }
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'your-smtp-host.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'chinmay.teli@somaiya.edu'
+EMAIL_HOST_PASSWORD = 'Chinmay@09'
+DEFAULT_FROM_EMAIL = 'chinmay.teli@somaiya.edu'
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

@@ -101,24 +101,31 @@ def index(request):
         if faculty.objects.filter(fac_email=request.user.email).exists():
             # Redirect user to faculty_dashboard page
             return redirect('faculty_dashboard')
+    
+    exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
+    exposure1 = list(exp1)
+    # for s1 in opt_courses_flat:
+    #     for s2 in exposure1:
+    #         if(s1 == s2):
+    #             exp1 = s1
+    #             break
+    print("Sem1 Exposure Course = ",exp1)
     compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
     compulsory_sem1 = list(compulsory_list)
-    print("Sem1: = ",compulsory_sem1)    
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
     context = {
-        'my_list': my_list,
+        'my_list': exposure1,
         'compulsory_sem1':compulsory_sem1,
         }
     return render(request, 'index.html', context)
 
 def sem2(request):
+    exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
+    exposure2 = list(exp2)
     compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
     compulsory_sem2 = list(compulsory_list)
-    print("Sem2: = ",compulsory_sem2)
-
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    print(compulsory_sem2)
     context = {
-        'my_list': my_list,
+        'my_list': exposure2,
         'compulsory_sem2':compulsory_sem2
         }
     return render(request, 'sem2.html', context)
@@ -149,13 +156,14 @@ def sem4(request):
     return render(request, 'sem4.html', context)
 
 def sem5(request):
-    name_str = student.objects.filter(roll_no=16010121813).values('stud_name')
+    name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
-    dept_str = student.objects.filter(roll_no=16010121813).values('dept')
+    dept_str = student.objects.filter(roll_no=16010121003).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    my_list = subject.objects.filter(type='DE',sem=5).values_list('sub_name',flat=True)
+    my_list = list(my_list)
     context = {'my_list': my_list}
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem5 = list(compulsory_list)
@@ -167,16 +175,16 @@ def sem5(request):
     return render(request, 'sem5.html', context)
 
 def sem6(request):
-    name_str = student.objects.filter(roll_no=16010121813).values('stud_name')
+    name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
 
-    dept_str = student.objects.filter(roll_no=16010121813).values('dept')
+    dept_str = student.objects.filter(roll_no=16010121003).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
 
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    context = {'my_list': my_list}
+    my_list = subject.objects.filter(type='DE',sem=6).values_list('sub_name',flat=True)
+    my_list = list(my_list)    
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem6 = list(compulsory_list)
     print("Sem6: = ",compulsory_sem6)
@@ -187,11 +195,11 @@ def sem6(request):
     return render(request, 'sem6.html', context)
 
 def sem7(request):
-    name_str = student.objects.filter(roll_no=16010121813).values('stud_name')
+    name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
     
-    dept_str = student.objects.filter(roll_no=16010121813).values('dept')
+    dept_str = student.objects.filter(roll_no=16010121003).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
     
@@ -207,11 +215,11 @@ def sem7(request):
     return render(request, 'sem7.html', context)
 
 def sem8(request):
-    name_str = student.objects.filter(roll_no=16010121813).values('stud_name')
+    name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
     
-    dept_str = student.objects.filter(roll_no=16010121813).values('dept')
+    dept_str = student.objects.filter(roll_no=16010121003).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
     #kumbalitrance
@@ -227,6 +235,8 @@ def sem8(request):
     return render(request, 'sem8.html', context)
 
 def card(request):
+    #Student: Name, Department, HonorMinor, Sempass
+    #Subjects
     return render(request, 'card.html')
 
 def importt(request):
@@ -327,15 +337,7 @@ def register(request):
     #             sem8_elective.append(s1)
     # print("Sem8 Elective = ",sem8_elective)
     
-    # exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
-    # exposure1 = list(exp1)
-    # #print(exposure1)
-    # for s1 in opt_courses_flat:
-    #     for s2 in exposure1:
-    #         if(s1 == s2):
-    #             exp1 = s1
-    #             break
-    # print("Sem1 Exposure Course = ",exp1)
+
     
     # exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
     # exposure2 = list(exp2)

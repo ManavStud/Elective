@@ -34,14 +34,14 @@
                                 </div>
                                 <br>
                                 <div class="optional_subject">
-                                    {% for item in my_list %}
-                                    <select class="my-dropdown" id="dropdown-{{forloop.counter}}">
-                                        <option value="{{ option }}">Select an option</option>
-                                        {% for option in my_list %}
-                                        <option>{{ option }}</option>
+                                        {% for item in my_list|slice:":8" %}
+                                            <select class="my-dropdown" id="dropdown-{{forloop.counter}}">
+                                            <option value="{{ option }}">Select an option</option>
+                                            {% for option in my_list %}
+                                            <option>{{ option }}</option>
+                                            {% endfor %}
+                                            </select>
                                         {% endfor %}
-                                    </select>
-                                    {% endfor %}
                                 </div>
                                 <br>
                                 <br>
@@ -56,6 +56,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
         </form>
     </div>
     <script src="script.js"></script>

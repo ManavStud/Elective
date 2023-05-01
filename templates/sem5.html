@@ -12,7 +12,9 @@
     <title>My Form</title>
 </head>
 
-<body>
+<body style="background-color: #4070f4;">
+    {% include 'nav.html' %} 
+
     <div class="container">
         <header>Semester Details</header>
 
@@ -28,7 +30,7 @@
                                     <input type="text" placeholder="roll no">
                                 </div>
                                 <br>
-                                <div class="optional_subject">
+                                <div class="optional_subject" style="height: 400px; overflow-y: auto;">
                                     {% for item in my_list %}
                                     <select class="my-dropdown" id="dropdown-{{forloop.counter}}">
                                         <option value="{{ option }}">Select an option</option>
@@ -37,17 +39,24 @@
                                         {% endfor %}
                                     </select>
                                     {% endfor %}
+                                    <div class="grade">
+                                        <input type="number" placeholder="Enter GPA" step=".01">
+                                    </div>
+                                    <button class="sumbit">
+                                        <span class="btnText">submit</span>
+                                        <i class="uil uil-navigator"></i>
+                                    </button>
                                 </div>
                                 <br>
                                 <br>
-                                <div class="grade">
+                                <!-- <div class="grade">
                                     <input type="number" placeholder="Enter GPA" step=".01">
-                                </div>
+                                </div> -->
                             </div>
-                            <button class="sumbit">
+                            <!-- <button class="sumbit">
                                 <span class="btnText">submit</span>
                                 <i class="uil uil-navigator"></i>
-                            </button>
+                            </button> -->
                         </div>
                     </div>
                 </div>
