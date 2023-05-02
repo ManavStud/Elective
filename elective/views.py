@@ -131,17 +131,30 @@ def sem2(request):
     exposure2 = list(exp2)
     compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
     compulsory_sem2 = list(compulsory_list)
-    roll=request.POST.get(roll)
-    pref1=request.POST.get()
-    try:
-        preference_obj = preference.objects.get(roll=roll)
-        print("Preference row already exists for roll number:", roll)
-    except preference.DoesNotExist:
-    # Create a new row with the given roll number and preferences
-        preference_obj = preference.objects.create(roll=roll, preference=preference)
-        print("Preference row created for roll number:", roll)
-    preference_list = preference_obj.preference
-    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    roll=request.POST.get('roll')
+    pref1 = request.POST.get('pref1')
+    pref2 = request.POST.get('pref2')
+    pref3 = request.POST.get('pref3')
+    pref4 = request.POST.get('pref4')
+    pref5 = request.POST.get('pref5')
+    pref6 = request.POST.get('pref6')
+    pref7 = request.POST.get('pref7')
+    pref8 = request.POST.get('pref8')
+    gpa = request.POST.get('gpa')
+    print(roll)
+    print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
+    print(gpa)
+    
+    # pref1=request.POST.get()
+    # try:
+    #     preference_obj = preference.objects.get(roll=roll)
+    #     print("Preference row already exists for roll number:", roll)
+    # except preference.DoesNotExist:
+    # # Create a new row with the given roll number and preferences
+    #     preference_obj = preference.objects.create(roll=roll, preference=preference)
+    #     print("Preference row created for roll number:", roll)
+    # preference_list = preference_obj.preference
+    # # my_list = ['AI', 'ML', 'DSIP','IS','CC']
     options=['pref1','pref2','pref3','pref4','pref5','pref6','pref7','pref8']
     context = {
         'my_list': exposure2,
@@ -151,39 +164,30 @@ def sem2(request):
     return render(request, 'sem2.html', context)
 # if 
 
-def sem2_submit(request):
+# def sem2_submit(request):
     
-    #gpa=request.POST.get(gpa)
-    roll=request.POST.get(roll)
-    pref1=request.POST.get()
-    try:
-        preference_obj = preference.objects.get(roll=roll)
-        print("Preference row already exists for roll number:", roll)
-    except preference.DoesNotExist:
-    # Create a new row with the given roll number and preferences
-        preference_obj = preference.objects.create(roll=roll, preference=preference)
-        print("Preference row created for roll number:", roll)
+#     #gpa=request.POST.get(gpa)
+#     roll=request.POST.get(roll)
+#     pref1=request.POST.get()
+#     try:
+#         preference_obj = preference.objects.get(roll=roll)
+#         print("Preference row already exists for roll number:", roll)
+#     except preference.DoesNotExist:
+#     # Create a new row with the given roll number and preferences
+#         preference_obj = preference.objects.create(roll=roll, preference=preference)
+#         print("Preference row created for roll number:", roll)
     
-    # You can now use preference_obj to access the preferences and other fields of the row
-    # For example, to get the preferences list, you can do:
-    preference_list = preference_obj.preference
+#     # You can now use preference_obj to access the preferences and other fields of the row
+#     # For example, to get the preferences list, you can do:
+#     preference_list = preference_obj.preference
     
-    return 
+#     return 
 
 
 
 def sem3(request):
     #my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    roll=request.POST.get(roll)
-    pref1=request.POST.get()
-    try:
-        preference_obj = preference.objects.get(roll=roll)
-        print("Preference row already exists for roll number:", roll)
-    except preference.DoesNotExist:
-    # Create a new row with the given roll number and preferences
-        preference_obj = preference.objects.create(roll=roll, preference=preference)
-        print("Preference row created for roll number:", roll)
-    #context = {'my_list': my_list}
+    
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem3 = list(compulsory_list)
     print("Sem3: = ",compulsory_sem3)
@@ -195,17 +199,7 @@ def sem3(request):
     
 
 def sem4(request):
-    roll=request.POST.get(roll)
-    pref1=request.POST.get()
-    try:
-        preference_obj = preference.objects.get(roll=roll)
-        print("Preference row already exists for roll number:", roll)
-    except preference.DoesNotExist:
-    # Create a new row with the given roll number and preferences
-        preference_obj = preference.objects.create(roll=roll, preference=preference)
-        print("Preference row created for roll number:", roll)
-    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    #context = {'my_list': my_list}
+    
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem4 = list(compulsory_list)
     print("Se43: = ",compulsory_sem4)
@@ -216,8 +210,15 @@ def sem4(request):
     return render(request, 'sem4.html', context)
 
 def sem5(request):
-    roll=request.POST.get(roll)
-    pref1=request.POST.get()
+    roll=request.POST.get('roll')
+    # pref1 = request.POST.get('pref1')
+    # pref2 = request.POST.get('pref2')
+    # pref3 = request.POST.get('pref3')
+    # pref4 = request.POST.get('pref4')
+    # gpa = request.POST.get('gpa')
+    # print(roll)
+    # print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
+    # print(gpa)
     try:
         preference_obj = preference.objects.get(roll=roll)
         print("Preference row already exists for roll number:", roll)
@@ -261,6 +262,20 @@ def sem6(request):
         'my_list': my_list,
         'compulsory_sem6':compulsory_sem6
         }
+    roll=request.POST.get('roll')
+    pref1 = request.POST.get('pref1')
+    pref2 = request.POST.get('pref2')
+    pref3 = request.POST.get('pref3')
+    pref4 = request.POST.get('pref4')
+    pref5 = request.POST.get('pref5')
+    pref6 = request.POST.get('pref6')
+    pref7 = request.POST.get('pref7')
+    pref8 = request.POST.get('pref8')
+    gpa = request.POST.get('gpa')
+    print(roll)
+    print(pref1,pref2,pref3,pref4,pref5,pref6,pref7,pref8)
+    print(gpa)
+    print("pref1 = ",pref1)
     return render(request, 'sem6.html', context)
 
 def sem7(request):
@@ -276,7 +291,7 @@ def sem7(request):
     context = {'my_list': my_list}
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem7 = list(compulsory_list)
-    print("Sem3: = ",compulsory_sem7)
+    print("Sem7: = ",compulsory_sem7)
     context = {
         'my_list': my_list,
         'compulsory_sem7':compulsory_sem7
@@ -284,6 +299,7 @@ def sem7(request):
     return render(request, 'sem7.html', context)
 
 def sem8(request):
+    
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     #print("Name = ",name)

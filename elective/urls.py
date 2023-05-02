@@ -41,7 +41,7 @@ urlpatterns = [
     path('sem6',views.sem6,name="sem6"),
     path('sem7',views.sem7,name="sem7"),
     path('sem8',views.sem8,name="sem8"),
-    path('sem2_submit',views.sem2_submit),
+   # path('sem2_submit',views.sem2_submit),
     path('nav',views.nav,name="nav"),
     path('card',views.card,name="card"),
     path('login',views.login,name="sem4"),
