@@ -5,10 +5,11 @@ from django.conf import settings
 from subject.models import subject,Exposure_Courses
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 from student.models import faculty
+from student.models import student
 from django import template
 from preference.models import preference
 
@@ -156,7 +157,19 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+@login_required
 def sem2(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+
+
     exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
     exposure2 = list(exp2)
     compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
@@ -172,7 +185,7 @@ def sem2(request):
     pref8 = request.POST.get('pref8')
     gpa = request.POST.get('gpa')
     print(roll)
-    print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
+   # print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
     print(gpa)
     if request.method == "POST":
         P = preference()
@@ -229,8 +242,17 @@ def sem2(request):
 #     return 
 
 
-
+@login_required
 def sem3(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
     #my_list = ['AI', 'ML', 'DSIP','IS','CC']
     
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
@@ -242,9 +264,18 @@ def sem3(request):
         }
     return render(request, 'sem3.html', context)
     
-
+@login_required
 def sem4(request):
+    email = request.user.email
+    print(email)
     
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+
     compulsory_list = subject.objects.filter(sem=4,type='N').values_list('sub_name',flat=True)
     compulsory_sem4 = list(compulsory_list)
     print("Se43: = ",compulsory_sem4)
@@ -254,7 +285,18 @@ def sem4(request):
         }
     return render(request, 'sem4.html', context)
 
+@login_required
 def sem5(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+
     roll=request.POST.get('roll')
     pref1 = request.POST.get('pref1')
     pref2 = request.POST.get('pref2')
@@ -303,7 +345,18 @@ def sem5(request):
         }
     return render(request, 'sem5.html', context)
 
+@login_required
 def sem6(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
@@ -355,7 +408,19 @@ def sem6(request):
         P.save()
     return render(request, 'sem6.html', context)
 
+@login_required
 def sem7(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
+
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
@@ -445,7 +510,18 @@ def sem7(request):
         P.save()
     return render(request, 'sem7.html', context)
 
+@login_required
 def sem8(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     #print("Name = ",name)
@@ -532,7 +608,18 @@ def sem8(request):
     return render(request, 'sem8.html', context)
 
 
+@login_required
 def card(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
     name_str = student.objects.filter(roll_no=16010121003).values()
     roll_no = name_str[0]['roll_no']
     name = name_str[0]['stud_name']
@@ -664,13 +751,47 @@ def card(request):
     print(context)
     return render(request, 'card.html',context)
 
+@login_required
 def importt(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
+
     return render(request, 'import.html')
 
+@login_required
 def course_selection(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+
     return render(request, 'course_selection.html')
 
+@login_required
 def faculty_dashboard(request):
+    email = request.user.email
+    print(email)
+    
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
     if request.user.is_authenticated:
         # Check if user's email is in the faculty table
         if faculty.objects.filter(fac_email=request.user.email).exists():
@@ -679,6 +800,7 @@ def faculty_dashboard(request):
     return redirect('card')
 
 
+@login_required
 def register(request):
     # compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
     # compulsory_sem1 = list(compulsory_list)
@@ -776,7 +898,17 @@ def register(request):
     
     # unique_entries = list(student.objects.values_list('hon_min', flat=True).distinct())
     # print(unique_entries)
+    email = request.user.email
+    print(email)
     
+    try:
+        rollno=student.objects.get(email=email)
+    except student.DoesNotExist:
+        return HttpResponse("You are not authorized to access this page.")
+    roll_fetch=rollno.roll_no
+    print(roll_fetch)
+    
+
     if request.method == 'POST':
         roll_no = request.POST.get('roll_no')
         stud_name = request.POST.get('stud_name')

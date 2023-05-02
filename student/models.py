@@ -11,6 +11,7 @@ class student(models.Model):
     admit_year=models.CharField(max_length=4)
     opt_course=models.CharField(max_length=500)
     gpa=models.FloatField()
+    email=models.CharField(max_length=50)
     class Meta:
         app_label = 'student'
 
