@@ -157,7 +157,11 @@ def index(request):
 
     return render(request, 'index.html', context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem2(request):
     email = request.user.email
     print(email)
@@ -242,7 +246,11 @@ def sem2(request):
 #     return 
 
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem3(request):
     email = request.user.email
     print(email)
@@ -264,7 +272,11 @@ def sem3(request):
         }
     return render(request, 'sem3.html', context)
     
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem4(request):
     email = request.user.email
     print(email)
@@ -285,7 +297,11 @@ def sem4(request):
         }
     return render(request, 'sem4.html', context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem5(request):
     email = request.user.email
     print(email)
@@ -345,7 +361,11 @@ def sem5(request):
         }
     return render(request, 'sem5.html', context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem6(request):
     email = request.user.email
     print(email)
@@ -408,7 +428,11 @@ def sem6(request):
         P.save()
     return render(request, 'sem6.html', context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem7(request):
     email = request.user.email
     print(email)
@@ -510,7 +534,11 @@ def sem7(request):
         P.save()
     return render(request, 'sem7.html', context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def sem8(request):
     email = request.user.email
     print(email)
@@ -608,7 +636,11 @@ def sem8(request):
     return render(request, 'sem8.html', context)
 
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def card(request):
     email = request.user.email
     print(email)
@@ -751,7 +783,11 @@ def card(request):
     print(context)
     return render(request, 'card.html',context)
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def importt(request):
     email = request.user.email
     print(email)
@@ -766,7 +802,11 @@ def importt(request):
 
     return render(request, 'import.html')
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def course_selection(request):
     email = request.user.email
     print(email)
@@ -780,7 +820,11 @@ def course_selection(request):
 
     return render(request, 'course_selection.html')
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def faculty_dashboard(request):
     email = request.user.email
     print(email)
@@ -800,7 +844,11 @@ def faculty_dashboard(request):
     return redirect('card')
 
 
+<<<<<<< HEAD
+
+=======
 @login_required
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 def register(request):
     # compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
     # compulsory_sem1 = list(compulsory_list)

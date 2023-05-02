@@ -48,9 +48,15 @@ body {
 .container form {
     position: relative;
     margin-top: 16px;
+<<<<<<< HEAD
+    min-height: 625px;
+    background-color: #fff;
+    overflow: visible;
+=======
     min-height: 490px;
     background-color: #fff;
     overflow: hidden;
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
 }
 
 .container form .form {
