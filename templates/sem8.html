@@ -33,8 +33,8 @@
                         <br>
                         <br>
                         <div class="optional_subject">For Departmental Elective 5 : <br>
-                            {% for item in my_list_de5|slice:":8" %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                            {% for item in my_list_de5 %}
+                            <select class="my-dropdown" name="Pref{{forloop.counter}}" id="Pref{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
@@ -51,8 +51,8 @@
                         </div>
                         For Departmental Elective 6 : 
                         <div class="optional_subject">
-                            {% for item in my_list_de6|slice:":8" %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                            {% for item in my_list_de6 %}
+                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="pref{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     

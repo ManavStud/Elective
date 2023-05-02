@@ -338,6 +338,8 @@ def sem6(request):
     if request.method == "POST":
         P = preference()
         name_str = student.objects.filter(roll_no=16010121003).values()
+        # name_str = student.objects.filter(email=var).valueslist(roll,flat=True)
+        # roll = name_str[0]['roll']
         P.name = name_str[0]['stud_name']
         P.roll = roll
         P.sem = 2
@@ -364,44 +366,42 @@ def sem7(request):
     
     my_list_de3 = subject.objects.filter(type='DE3',sem=7).values_list('sub_name',flat=True)
     my_list_de3 = list(my_list_de3) 
-    print("de3: ",my_list_de3)
+    #print("de3: ",my_list_de3)
     # my_list = ['AI', 'ML', 'DSIP','IS','CC']
     context = {'my_list_de3': my_list_de3}
 
     
     my_list_de4 = subject.objects.filter(type='DE4',sem=7).values_list('sub_name',flat=True)
     my_list_de4 = list(my_list_de4) 
-    print("de4: ",my_list_de4)
+    #print("de4: ",my_list_de4)
     # my_list = ['AI', 'ML', 'DSIP','IS','CC']
     context = {'my_list_de4': my_list_de4}
 
     compulsory_list = subject.objects.filter(sem=7,type='N').values_list('sub_name',flat=True)
     compulsory_sem7 = list(compulsory_list)
-    print("Sem7: = ",compulsory_sem7)
+    #print("Sem7: = ",compulsory_sem7)
     context = {
         'my_list_de3': my_list_de3,
         'my_list_de4': my_list_de4,
         'compulsory_sem7':compulsory_sem7
         }
-    if request.method == 'post':
+    if request.method == 'POST':
         roll=request.POST.get('roll')
-        pref_de3_1 = request.POST.get('pref_de3_1')
-        pref_de3_2 = request.POST.get('pref_de3_2')
-        pref_de3_3 = request.POST.get('pref_de3_3')
-        pref_de3_4 = request.POST.get('pref_de3_4')
-        pref_de3_5 = request.POST.get('pref_de3_5')
-        pref_de3_6 = request.POST.get('pref_de3_6')
-        pref_de3_7 = request.POST.get('pref_de3_7')
-        pref_de3_8 = request.POST.get('pref_de3_8')
+        pref_de3_1 = request.POST.get('Pref1')
+        pref_de3_2 = request.POST.get('Pref2')
+        pref_de3_3 = request.POST.get('Pref3')
+        pref_de3_4 = request.POST.get('Pref4')
+        pref_de3_5 = request.POST.get('Pref5')
+        pref_de3_6 = request.POST.get('Pref6')
+        pref_de3_7 = request.POST.get('Pref7')
 
-        pref_de4_1 = request.POST.get('pref_de4_1')
-        pref_de4_2 = request.POST.get('pref_de4_2')
-        pref_de4_3 = request.POST.get('pref_de4_3')
-        pref_de4_4 = request.POST.get('pref_de4_4')
-        pref_de4_5 = request.POST.get('pref_de4_5')
-        pref_de4_6 = request.POST.get('pref_de4_6')
-        pref_de4_7 = request.POST.get('pref_de4_7')
-        pref_de4_8 = request.POST.get('pref_de3_8')
+        pref_de4_1 = request.POST.get('pref1')
+        pref_de4_2 = request.POST.get('pref2')
+        pref_de4_3 = request.POST.get('pref3')
+        pref_de4_4 = request.POST.get('pref4')
+        pref_de4_5 = request.POST.get('pref5')
+        pref_de4_6 = request.POST.get('pref6')
+
         # pref4 = request.POST.get('pref4')
         # pref5 = request.POST.get('pref5')
         # pref6 = request.POST.get('pref6')
@@ -412,10 +412,40 @@ def sem7(request):
         print(pref_de3_1,pref_de3_2,pref_de3_3,pref_de3_4,pref_de3_5,pref_de3_6,pref_de3_7,pref_de3_8)
         print(pref_de4_1,pref_de4_2,pref_de4_3,pref_de4_4,pref_de4_5,pref_de4_6,pref_de4_7,pref_de4_8)
         print(gpa)
+        
+        
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 71
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref_de3_1
+        P.pref2 = pref_de3_2
+        P.pref3 = pref_de3_3
+        P.pref4 = pref_de3_4
+        P.pref5 = pref_de3_5
+        P.pref6 = pref_de3_6
+        P.pref7 = pref_de3_7
+
+        P.save()
+        
+        P = preference()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 72
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref_de4_1
+        P.pref2 = pref_de4_2
+        P.pref3 = pref_de4_3
+        P.pref4 = pref_de4_4
+        P.pref5 = pref_de4_5
+        P.pref6 = pref_de4_6
+
+        P.save()
     return render(request, 'sem7.html', context)
 
 def sem8(request):
-    
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     #print("Name = ",name)
@@ -445,6 +475,60 @@ def sem8(request):
         'my_list_de6': my_list_de6,
         'compulsory_sem8':compulsory_sem8
         }
+    if request.method == 'POST':
+        roll=request.POST.get('roll')
+        pref_de3_1 = request.POST.get('Pref1')
+        pref_de3_2 = request.POST.get('Pref2')
+        pref_de3_3 = request.POST.get('Pref3')
+        pref_de3_4 = request.POST.get('Pref4')
+        pref_de3_5 = request.POST.get('Pref5')
+        pref_de3_6 = request.POST.get('Pref6')
+
+
+        pref_de4_1 = request.POST.get('pref1')
+        pref_de4_2 = request.POST.get('pref2')
+        pref_de4_3 = request.POST.get('pref3')
+        pref_de4_4 = request.POST.get('pref4')
+        pref_de4_5 = request.POST.get('pref5')
+        pref_de4_6 = request.POST.get('pref6')
+        # pref4 = request.POST.get('pref4')
+        # pref5 = request.POST.get('pref5')
+        # pref6 = request.POST.get('pref6')
+        # pref7 = request.POST.get('pref7')
+        # pref8 = request.POST.get('pref8')
+        gpa = request.POST.get('gpa')
+        print(roll)
+        # print(pref_de3_1,pref_de3_2,pref_de3_3,pref_de3_4,pref_de3_5,pref_de3_6,pref_de3_7,pref_de3_8)
+        # print(pref_de4_1,pref_de4_2,pref_de4_3,pref_de4_4,pref_de4_5,pref_de4_6,pref_de4_7,pref_de4_8)
+        print(gpa)
+        
+        
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 81
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref_de3_1
+        P.pref2 = pref_de3_2
+        P.pref3 = pref_de3_3
+        P.pref4 = pref_de3_4
+        P.pref5 = pref_de3_5
+        P.save()
+        
+        P = preference()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 82
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref_de4_1
+        P.pref2 = pref_de4_2
+        P.pref3 = pref_de4_3
+        P.pref4 = pref_de4_4
+        P.pref5 = pref_de4_5
+        P.pref6 = pref_de4_6
+        P.save()
+        
     return render(request, 'sem8.html', context)
 
 

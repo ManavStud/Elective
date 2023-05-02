@@ -30,17 +30,16 @@
                                 <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
                             
                         </div>
-                        <br>
-                        <br>
-                        <div class="optional_subject">For Departmental Elective 3 : <br>
-                            {% for item in my_list_de3|slice:":8" %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                        <div class="optional_subject">
+                            <br>For Departmental Elective 3 : <br>
+                            {% for item in my_list_de3 %}
+                            <select class="my-dropdown" name="Pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
                                     {% for option in my_list_de3 %}
                                         
-                                            <option id ="pref_de3_{{forloop.counter}}" name="pref_de3_{{forloop.counter}}">{{ option }}</option>
+                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
                                         
                                     {% endfor %}
                                 
@@ -49,16 +48,17 @@
                             {% endfor %}
                            
                         </div>
+                        <br><br>
                         For Departmental Elective 4 : 
                         <div class="optional_subject">
-                            {% for item in my_list_de4|slice:":8" %}
+                            {% for item in my_list_de4 %}
                             <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
                                     {% for option in my_list_de4 %}
                                         
-                                            <option id ="pref_de4_{{forloop.counter}}" name="pref_de4_{{forloop.counter}}">{{ option }}</option>
+                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
                                         
                                     {% endfor %}
                                 
