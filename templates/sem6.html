@@ -15,11 +15,7 @@
 <body  style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-<<<<<<< HEAD
     <div class="container" style="margin: 5em 0;">
-=======
-    <div class="container">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
         <header>Semester Details</header>
 
         <form method="post">
@@ -27,7 +23,6 @@
             <div class="form first">
                 <div class="details personal">
                     <div class="fields">
-<<<<<<< HEAD
                         <div class="subject mb-2">
                                 <label></label>
                                 <input type="text" placeholder="roll no" id="roll" name="roll"> 
@@ -36,17 +31,6 @@
                         <div class="optional_subject">
                             {% for item in my_list|slice:":8" %}
                             <select class="my-dropdown mb-3" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
-=======
-                        <div class="subject">
-                            
-                            <label></label>
-                            <input type="text" placeholder="roll no" id="roll" name="roll">
-                        </div>
-                        <br>
-                        <div class="optional_subject" style="height: 200px; overflow-y: auto;">
-                            {% for item in my_list|slice:":8" %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
@@ -59,13 +43,7 @@
                             </select>
                             <!-- {{ compulsory_sem2 }} -->
                             {% endfor %}
-<<<<<<< HEAD
                            
-=======
-                            <div class="grade">
-                                <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
-                            </div>
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
                         </div>
                         <button class="sumbit" type="submit">
                             <span class="btnText">submit</span>
