@@ -18,7 +18,8 @@
     <div class="container">
         <header>Semester Details</header>
 
-        <form action="#">
+        <form method="post">
+            {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
                     <div class="fields">

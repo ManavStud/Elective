@@ -20,7 +20,7 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from allauth.account.views import LoginView
-from .views import user_info
+# from .views import user_info
 
 #from .views import google_auth
 
@@ -50,6 +50,6 @@ urlpatterns = [
     path('importt',views.importt,name="importt"),
     path('',include("allauth.urls")),
     path('accounts/', include('social_django.urls', namespace='social')),
-    path('user_info/', user_info, name='user_info'),
+    # path('user_info/', user_info, name='user_info'),
     path('stud_pref',views.stud_pref)
 ]

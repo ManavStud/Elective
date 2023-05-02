@@ -12,69 +12,69 @@ from student.models import faculty
 from django import template
 from preference.models import preference
 
-register = template.Library()
+# register = template.Library()
 
-@register.filter(name='get_range')
-def get_range(min_val, max_val):
-    return range(min_val, max_val + 1)
+# @register.filter(name='get_range')
+# def get_range(min_val, max_val):
+#     return range(min_val, max_val + 1)
 
 
-def user_info(request):
-    # Retrieve the access token from the session
-    access_token = request.session.get('access_token')
-    # Check if access_token is present in the session
-    if access_token:
-        try:
-            # Build the Google Drive API client
-            credentials = Credentials.from_authorized_user_info(info=access_token)
-            service = build('drive', 'v3', credentials=credentials)
-            # Get the user's storage information
-            about = service.about().get(fields='storageQuota').execute()
-            total_storage = about['storageQuota']['limit']
-            used_storage = about['storageQuota']['usage']
-            # Render the user_info.html template with the retrieved storage details
-            context = {'total_storage': total_storage, 'used_storage': used_storage}
-            return render(request, 'user_info.html', context)
-        except HttpError as error:
-            # Handle any errors that occur while accessing the Google Drive API
-            print(f'An error occurred: {error}')
-            return render(request, 'error.html', {'error': 'Failed to retrieve user information.'})
-    else:
-        # Redirect to the login page if access_token is not present in the session
-        return redirect('google_login')
+# def user_info(request):
+#     # Retrieve the access token from the session
+#     access_token = request.session.get('access_token')
+#     # Check if access_token is present in the session
+#     if access_token:
+#         try:
+#             # Build the Google Drive API client
+#             credentials = Credentials.from_authorized_user_info(info=access_token)
+#             service = build('drive', 'v3', credentials=credentials)
+#             # Get the user's storage information
+#             about = service.about().get(fields='storageQuota').execute()
+#             total_storage = about['storageQuota']['limit']
+#             used_storage = about['storageQuota']['usage']
+#             # Render the user_info.html template with the retrieved storage details
+#             context = {'total_storage': total_storage, 'used_storage': used_storage}
+#             return render(request, 'user_info.html', context)
+#         except HttpError as error:
+#             # Handle any errors that occur while accessing the Google Drive API
+#             print(f'An error occurred: {error}')
+#             return render(request, 'error.html', {'error': 'Failed to retrieve user information.'})
+#     else:
+#         # Redirect to the login page if access_token is not present in the session
+#         return redirect('google_login')
 
-def google_callback(request):
-    # Get the authorization code from the query parameter
-    code = request.GET.get('code', None)
-    if code:
-        try:
-            # Exchange authorization code for access token
-            credentials = Credentials.from_authorized_user_code(
-                code,
-                scopes=['https://www.googleapis.com/auth/userinfo.profile',
-                        'https://www.googleapis.com/auth/userinfo.email',
-                        'https://www.googleapis.com/auth/drive.metadata.readonly']
-            )
-            # Call the People API to retrieve user information
-            people_service = build('people', 'v1', credentials=credentials)
-            person = people_service.people().get(resourceName='people/me', personFields='names,emailAddresses,photos').execute()
-            # Extract relevant user information
-            user_name = person['names'][0]['displayName']
-            user_email = person['emailAddresses'][0]['value']
-            user_profile_picture = person['photos'][0]['url']
+# def google_callback(request):
+#     # Get the authorization code from the query parameter
+#     code = request.GET.get('code', None)
+#     if code:
+#         try:
+#             # Exchange authorization code for access token
+#             credentials = Credentials.from_authorized_user_code(
+#                 code,
+#                 scopes=['https://www.googleapis.com/auth/userinfo.profile',
+#                         'https://www.googleapis.com/auth/userinfo.email',
+#                         'https://www.googleapis.com/auth/drive.metadata.readonly']
+#             )
+#             # Call the People API to retrieve user information
+#             people_service = build('people', 'v1', credentials=credentials)
+#             person = people_service.people().get(resourceName='people/me', personFields='names,emailAddresses,photos').execute()
+#             # Extract relevant user information
+#             user_name = person['names'][0]['displayName']
+#             user_email = person['emailAddresses'][0]['value']
+#             user_profile_picture = person['photos'][0]['url']
             
-            # Call the Drive API to retrieve storage information
-            drive_service = build('drive', 'v3', credentials=credentials)
-            about = drive_service.about().get(fields='storageQuota').execute()
-            total_storage = about['storageQuota']['limit']
-            used_storage = about['storageQuota']['usage']
+#             # Call the Drive API to retrieve storage information
+#             drive_service = build('drive', 'v3', credentials=credentials)
+#             about = drive_service.about().get(fields='storageQuota').execute()
+#             total_storage = about['storageQuota']['limit']
+#             used_storage = about['storageQuota']['usage']
             
-            # Pass user and storage information to template and render HTML page
-            return render(request, 'user_info.html', {'user_name': user_name, 'user_email': user_email, 'user_profile_picture': user_profile_picture, 'total_storage': total_storage, 'used_storage': used_storage})
-        except Exception as e:
-            # Handle any exceptions that may occur
-            print(f'Error: {e}')
-    return HttpResponseRedirect('/login')  # Redirect to login page if authorization code is not present
+#             # Pass user and storage information to template and render HTML page
+#             return render(request, 'user_info.html', {'user_name': user_name, 'user_email': user_email, 'user_profile_picture': user_profile_picture, 'total_storage': total_storage, 'used_storage': used_storage})
+#         except Exception as e:
+#             # Handle any exceptions that may occur
+#             print(f'Error: {e}')
+#     return HttpResponseRedirect('/login')  # Redirect to login page if authorization code is not present
 # def google_auth(request):
 #     if not request.user.is_authenticated:
 #         return redirect('login')
@@ -124,6 +124,36 @@ def index(request):
         'my_list': exposure1,
         'compulsory_sem1':compulsory_sem1,
         }
+    
+    roll = request.POST.get('roll')
+    pref1 = request.POST.get('pref1')
+    pref2 = request.POST.get('pref2')
+    pref3 = request.POST.get('pref3')
+    pref4 = request.POST.get('pref4')
+    pref5 = request.POST.get('pref5')
+    pref6 = request.POST.get('pref6')
+    pref7 = request.POST.get('pref7')
+    pref8 = request.POST.get('pref8')
+    gpa = request.POST.get('gpa')
+    
+    if request.method == "POST":
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 1
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref1
+        P.pref2 = pref2
+        P.pref3 = pref3
+        P.pref4 = pref4
+        P.pref5 = pref5
+        P.pref6 = pref6
+        P.pref7 = pref7
+        P.pref8 = pref8
+        P.save()
+    
+
     return render(request, 'index.html', context)
 
 def sem2(request):
@@ -144,7 +174,22 @@ def sem2(request):
     print(roll)
     print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
     print(gpa)
-    
+    if request.method == "POST":
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 2
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref1
+        P.pref2 = pref2
+        P.pref3 = pref3
+        P.pref4 = pref4
+        P.pref5 = pref5
+        P.pref6 = pref6
+        P.pref7 = pref7
+        P.pref8 = pref8
+        P.save()
     # pref1=request.POST.get()
     # try:
     #     preference_obj = preference.objects.get(roll=roll)
@@ -200,11 +245,11 @@ def sem3(request):
 
 def sem4(request):
     
-    compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
+    compulsory_list = subject.objects.filter(sem=4,type='N').values_list('sub_name',flat=True)
     compulsory_sem4 = list(compulsory_list)
     print("Se43: = ",compulsory_sem4)
     context = {
-     #   'my_list': my_list,
+    #   'my_list': my_list,
         'compulsory_sem4':compulsory_sem4
         }
     return render(request, 'sem4.html', context)
@@ -216,11 +261,25 @@ def sem5(request):
     pref3 = request.POST.get('pref3')
     pref4 = request.POST.get('pref4')
     gpa = request.POST.get('gpa')
+    
+    if request.method == "POST":
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 2
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref1
+        P.pref2 = pref2
+        P.pref3 = pref3
+        P.pref4 = pref4
+        P.save()
+    print(gpa)
     print(roll)
     # print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
     print(gpa)
     try:
-        preference_obj = preference.objects.get(roll=roll)
+        #preference_obj = preference.objects.get(roll=roll)
         print("Preference row already exists for roll number:", roll)
     except preference.DoesNotExist:
     # Create a new row with the given roll number and preferences
@@ -276,6 +335,22 @@ def sem6(request):
     print(pref1,pref2,pref3,pref4,pref5,pref6,pref7,pref8)
     print(gpa)
     print("pref1 = ",pref1)
+    if request.method == "POST":
+        P = preference()
+        name_str = student.objects.filter(roll_no=16010121003).values()
+        P.name = name_str[0]['stud_name']
+        P.roll = roll
+        P.sem = 2
+        P.dept = name_str[0]['dept']
+        P.pref1 = pref1
+        P.pref2 = pref2
+        P.pref3 = pref3
+        P.pref4 = pref4
+        P.pref5 = pref5
+        P.pref6 = pref6
+        P.pref7 = pref7
+        P.pref8 = pref8
+        P.save()
     return render(request, 'sem6.html', context)
 
 def sem7(request):
@@ -287,15 +362,56 @@ def sem7(request):
     dept = dept_str[0]['dept']
     print("Department = ",dept)
     
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    context = {'my_list': my_list}
-    compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
+    my_list_de3 = subject.objects.filter(type='DE3',sem=7).values_list('sub_name',flat=True)
+    my_list_de3 = list(my_list_de3) 
+    print("de3: ",my_list_de3)
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    context = {'my_list_de3': my_list_de3}
+
+    
+    my_list_de4 = subject.objects.filter(type='DE4',sem=7).values_list('sub_name',flat=True)
+    my_list_de4 = list(my_list_de4) 
+    print("de4: ",my_list_de4)
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    context = {'my_list_de4': my_list_de4}
+
+    compulsory_list = subject.objects.filter(sem=7,type='N').values_list('sub_name',flat=True)
     compulsory_sem7 = list(compulsory_list)
     print("Sem7: = ",compulsory_sem7)
     context = {
-        'my_list': my_list,
+        'my_list_de3': my_list_de3,
+        'my_list_de4': my_list_de4,
         'compulsory_sem7':compulsory_sem7
         }
+    if request.method == 'post':
+        roll=request.POST.get('roll')
+        pref_de3_1 = request.POST.get('pref_de3_1')
+        pref_de3_2 = request.POST.get('pref_de3_2')
+        pref_de3_3 = request.POST.get('pref_de3_3')
+        pref_de3_4 = request.POST.get('pref_de3_4')
+        pref_de3_5 = request.POST.get('pref_de3_5')
+        pref_de3_6 = request.POST.get('pref_de3_6')
+        pref_de3_7 = request.POST.get('pref_de3_7')
+        pref_de3_8 = request.POST.get('pref_de3_8')
+
+        pref_de4_1 = request.POST.get('pref_de4_1')
+        pref_de4_2 = request.POST.get('pref_de4_2')
+        pref_de4_3 = request.POST.get('pref_de4_3')
+        pref_de4_4 = request.POST.get('pref_de4_4')
+        pref_de4_5 = request.POST.get('pref_de4_5')
+        pref_de4_6 = request.POST.get('pref_de4_6')
+        pref_de4_7 = request.POST.get('pref_de4_7')
+        pref_de4_8 = request.POST.get('pref_de3_8')
+        # pref4 = request.POST.get('pref4')
+        # pref5 = request.POST.get('pref5')
+        # pref6 = request.POST.get('pref6')
+        # pref7 = request.POST.get('pref7')
+        # pref8 = request.POST.get('pref8')
+        gpa = request.POST.get('gpa')
+        print(roll)
+        print(pref_de3_1,pref_de3_2,pref_de3_3,pref_de3_4,pref_de3_5,pref_de3_6,pref_de3_7,pref_de3_8)
+        print(pref_de4_1,pref_de4_2,pref_de4_3,pref_de4_4,pref_de4_5,pref_de4_6,pref_de4_7,pref_de4_8)
+        print(gpa)
     return render(request, 'sem7.html', context)
 
 def sem8(request):
@@ -307,14 +423,26 @@ def sem8(request):
     dept_str = student.objects.filter(roll_no=16010121003).values('dept')
     dept = dept_str[0]['dept']
     print("Department = ",dept)
+
+    my_list_de5 = subject.objects.filter(type='DE5',sem=8).values_list('sub_name',flat=True)
+    my_list_de5 = list(my_list_de5) 
+    print("de5: ",my_list_de5)
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    context = {'my_list_de5': my_list_de5}
+
     #kumbalitrance
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    context = {'my_list': my_list}
-    compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
+   # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+   
+    my_list_de6 = subject.objects.filter(type='DE6',sem=8).values_list('sub_name',flat=True)
+    my_list_de6 = list(my_list_de6) 
+    print("de5: ",my_list_de6)
+    context = {'my_list_de6': my_list_de6}
+    compulsory_list = subject.objects.filter(sem=8,type='N').values_list('sub_name',flat=True)
     compulsory_sem8 = list(compulsory_list)
-    print("Sem3: = ",compulsory_sem8)
+    print("Sem8: = ",compulsory_sem8)
     context = {
-        'my_list': my_list,
+        'my_list_de5': my_list_de5,
+        'my_list_de6': my_list_de6,
         'compulsory_sem8':compulsory_sem8
         }
     return render(request, 'sem8.html', context)
