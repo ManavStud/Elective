@@ -211,14 +211,14 @@ def sem4(request):
 
 def sem5(request):
     roll=request.POST.get('roll')
-    # pref1 = request.POST.get('pref1')
-    # pref2 = request.POST.get('pref2')
-    # pref3 = request.POST.get('pref3')
-    # pref4 = request.POST.get('pref4')
-    # gpa = request.POST.get('gpa')
-    # print(roll)
+    pref1 = request.POST.get('pref1')
+    pref2 = request.POST.get('pref2')
+    pref3 = request.POST.get('pref3')
+    pref4 = request.POST.get('pref4')
+    gpa = request.POST.get('gpa')
+    print(roll)
     # print(pref1 + "\n",pref2 + "\n",pref3+ "\n",pref4+ "\n",pref5+ "\n",pref6+ "\n",pref7+ "\n",pref8+ "\n")
-    # print(gpa)
+    print(gpa)
     try:
         preference_obj = preference.objects.get(roll=roll)
         print("Preference row already exists for roll number:", roll)
