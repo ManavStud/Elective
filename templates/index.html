@@ -13,7 +13,11 @@
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="container" style="margin: 5em 0;">
+=======
+    <div class="container">
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
         {% if user.is_authenticated %}
             <p>Welcome back, {{ user.username }}!</p>
             <a href="{% url 'logout' %}">logout ki nishani</a>
@@ -31,7 +35,10 @@
                                 <div class="subject">
                                     <label></label>
                                     <input type="text" placeholder="roll no">
+<<<<<<< HEAD
                                     <input type="number" placeholder="Enter GPA" step=".01">
+=======
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
                                 </div>
                                 <br>
                                 <div class="optional_subject">
@@ -44,10 +51,18 @@
                                             </select>
                                         {% endfor %}
                                 </div>
+<<<<<<< HEAD
                                 
                                 <!-- <div class="grade">
                                     
                                 </div> -->
+=======
+                                <br>
+                                <br>
+                                <div class="grade">
+                                    <input type="number" placeholder="Enter GPA" step=".01">
+                                </div>
+>>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
                             </div>
                             <button class="sumbit">
                                 <span class="btnText">submit</span>

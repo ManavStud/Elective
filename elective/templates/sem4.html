@@ -15,11 +15,7 @@
 <body style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-<<<<<<< HEAD
-    <div class="container" style="margin: 3em 0;">
-=======
     <div class="container">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
         <header>Semester Details</header>
         <form method = "post">
             {% csrf_token %}
@@ -28,7 +24,7 @@
                     <div class="fields">
                         <div class="details ID">
                             <span class="title">Semester 3</span>
-                            <br>Since there are no elective courses in semester 3
+                            <br>Since there are no elective courses in semester 4
                             <div class="fields">
                                 <!-- <div class="subject">
                                     <label></label>
@@ -36,7 +32,7 @@
                                 </div> -->
                                 <br>
                                 <div class="optional_subject" style="height: 400px; overflow-y: auto;">
-                                    {% for item in compulsory_sem3|slice:":8" %}
+                                    {% for item in compulsory_sem4|slice:":8" %}
                                         <li>{{ item }}</li>
                                     {% endfor %}
                                     <!-- <div class="grade">

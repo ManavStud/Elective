@@ -2,59 +2,73 @@
 <html lang="en">
 {% load static %}
 
+
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    
     <script src="{% static 'js/script.js' %}"></script>
     <title>My Form</title>
 </head>
 
-<body style="background-color: #4070f4;">
-    {% include 'nav.html' %} 
-
-<<<<<<< HEAD
-    <div class="container" style="margin: 3em 0;">
-=======
+<body style="background-color: #4070f4;">  
+    <!-- {% include 'nav.html' %}  -->
+    <!-- <div style="padding-top: 100px;"> -->
+        {% include 'nav.html' %} 
     <div class="container">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
+        <!-- {% include 'nav.html' %}  -->
         <header>Semester Details</header>
-        <form method = "post">
+
+        <form method="post">
             {% csrf_token %}
             <div class="form first">
                 <div class="details personal">
                     <div class="fields">
                         <div class="details ID">
-                            <span class="title">Semester 3</span>
-                            <br>Since there are no elective courses in semester 3
+                            <span class="title">Semester 2 {% for subject_name in compulsory_sem2 %}
+                                {{ subject_name }}
+                            {% endfor %}</span>
                             <div class="fields">
-                                <!-- <div class="subject">
+                                <div class="subject">
+                                    
                                     <label></label>
-                                    <input type="text" placeholder="roll no">
-                                </div> -->
+                                    <input type="text" placeholder="roll no" id="roll" name="roll">
+                                </div>
                                 <br>
                                 <div class="optional_subject" style="height: 400px; overflow-y: auto;">
-                                    {% for item in compulsory_sem3|slice:":8" %}
-                                        <li>{{ item }}</li>
+                                    {% for item in my_list|slice:":8" %}
+                                    <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                                        <option value="{{ option }}">Select an option</option>
+                                        
+                                            
+                                            {% for option in my_list %}
+                                                
+                                                    <option id ="pref{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
+                                                
+                                            {% endfor %}
+                                        
+                                    </select>
+                                    <!-- {{ compulsory_sem2 }} -->
                                     {% endfor %}
-                                    <!-- <div class="grade">
-                                        <input type="number" placeholder="Enter GPA" step=".01">
-                                    </div> -->
-                                    <!-- <button class="sumbit">
-                                        <span class="btnText">submit</span>
-                                        <i class="uil uil-navigator"></i>
-                                    </button> -->
-                                </div>
+                                    <div class="grade">
+                                        <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
+                                    </div>
+                                <button class="sumbit" type="submit">
+                                    <span class="btnText">submit</span>
+                                    <i class="uil uil-navigator"></i>
+                                </button>
+                            </div>
                                 <br>
                                 <br>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
         </form>
+    </div>
     </div>
     <script src="script.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -15,11 +15,7 @@
 <body  style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-<<<<<<< HEAD
-    <div class="container" style="margin: 5em 0;">
-=======
     <div class="container">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
         <header>Semester Details</header>
 
         <form method="post">
@@ -30,69 +26,27 @@
                         <div class="subject">
                             
                             <label></label>
-                            <input type="text" placeholder="roll no" id="roll" name="roll"> 
+                            <input type="text" placeholder="roll no" id="roll" name="roll">
+                        </div>
+                        <br>
+                        <div class="optional_subject" style="height: 200px; overflow-y: auto;">
+                            {% for item in my_list|slice:":8" %}
+                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                                <option value="{{ option }}">Select an option</option>
+                                
+                                    
+                                    {% for option in my_list %}
+                                        
+                                            <option id ="pref{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
+                                        
+                                    {% endfor %}
+                                
+                            </select>
+                            <!-- {{ compulsory_sem2 }} -->
+                            {% endfor %}
+                            <div class="grade">
                                 <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
-                            
-                        </div>
-<<<<<<< HEAD
-                        <div class="optional_subject">
-                            <br>For Departmental Elective 5 : <br>
-                            {% for item in my_list_de5 %}
-                            <select class="my-dropdown mb-2" name="Pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
-=======
-                        <br>
-                        <br>
-                        <div class="optional_subject">For Departmental Elective 5 : <br>
-                            {% for item in my_list_de5 %}
-                            <select class="my-dropdown" name="Pref{{forloop.counter}}" id="Pref{{forloop.counter}}">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
-                                <option value="{{ option }}">Select an option</option>
-                                
-                                    
-                                    {% for option in my_list_de5 %}
-                                        
-<<<<<<< HEAD
-                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
-=======
-                                            <option id ="pref_de5_{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
-                                        
-                                    {% endfor %}
-                                
-                            </select>
-                            <!-- {{ compulsory_sem2 }} -->
-                            {% endfor %}
-                           
-                        </div>
-<<<<<<< HEAD
-                        <br><br>
-                        For Departmental Elective 6: 
-                        <div class="optional_subject">
-                            {% for item in my_list_de6 %}
-                            <select class="my-dropdown mb-2" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
-=======
-                        For Departmental Elective 6 : 
-                        <div class="optional_subject">
-                            {% for item in my_list_de6 %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="pref{{forloop.counter}}">
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
-                                <option value="{{ option }}">Select an option</option>
-                                
-                                    
-                                    {% for option in my_list_de6 %}
-                                        
-<<<<<<< HEAD
-                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
-=======
-                                            <option id ="pref_de6_{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
->>>>>>> c5de5328e3da14fa68afdaefcfb7ee2b54eca2c6
-                                        
-                                    {% endfor %}
-                                
-                            </select>
-                            <!-- {{ compulsory_sem2 }} -->
-                            {% endfor %}
-                           
+                            </div>
                         </div>
                         <button class="sumbit" type="submit">
                             <span class="btnText">submit</span>
