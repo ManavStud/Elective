@@ -33,7 +33,7 @@
                                     <select class="my-dropdown" id="dropdown-{{forloop.counter}}">
                                         <option value="{{ option }}">Select an option</option>
                                         {% for option in my_list %}
-                                        <option>{{ option }}</option>
+                                        <option id="pref{{forloop.counter}}">{{ option }}</option>
                                         {% endfor %}
                                     </select>
                                     {% endfor %}

@@ -9,6 +9,14 @@ from googleapiclient.discovery import build
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
 from student.models import faculty
+from django import template
+from preference.models import preference
+
+register = template.Library()
+
+@register.filter(name='get_range')
+def get_range(min_val, max_val):
+    return range(min_val, max_val + 1)
 
 
 def user_info(request):
@@ -123,40 +131,100 @@ def sem2(request):
     exposure2 = list(exp2)
     compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
     compulsory_sem2 = list(compulsory_list)
-
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    roll=request.POST.get(roll)
+    pref1=request.POST.get()
+    try:
+        preference_obj = preference.objects.get(roll=roll)
+        print("Preference row already exists for roll number:", roll)
+    except preference.DoesNotExist:
+    # Create a new row with the given roll number and preferences
+        preference_obj = preference.objects.create(roll=roll, preference=preference)
+        print("Preference row created for roll number:", roll)
+    preference_list = preference_obj.preference
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    options=['pref1','pref2','pref3','pref4','pref5','pref6','pref7','pref8']
     context = {
         'my_list': exposure2,
-        'compulsory_sem2':compulsory_sem2
+        'compulsory_sem2':compulsory_sem2,
+        'pref':options,
         }
     return render(request, 'sem2.html', context)
+# if 
+
+def sem2_submit(request):
+    
+    #gpa=request.POST.get(gpa)
+    roll=request.POST.get(roll)
+    pref1=request.POST.get()
+    try:
+        preference_obj = preference.objects.get(roll=roll)
+        print("Preference row already exists for roll number:", roll)
+    except preference.DoesNotExist:
+    # Create a new row with the given roll number and preferences
+        preference_obj = preference.objects.create(roll=roll, preference=preference)
+        print("Preference row created for roll number:", roll)
+    
+    # You can now use preference_obj to access the preferences and other fields of the row
+    # For example, to get the preferences list, you can do:
+    preference_list = preference_obj.preference
+    
+    return 
+
 
 
 def sem3(request):
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    context = {'my_list': my_list}
+    #my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    roll=request.POST.get(roll)
+    pref1=request.POST.get()
+    try:
+        preference_obj = preference.objects.get(roll=roll)
+        print("Preference row already exists for roll number:", roll)
+    except preference.DoesNotExist:
+    # Create a new row with the given roll number and preferences
+        preference_obj = preference.objects.create(roll=roll, preference=preference)
+        print("Preference row created for roll number:", roll)
+    #context = {'my_list': my_list}
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem3 = list(compulsory_list)
     print("Sem3: = ",compulsory_sem3)
     context = {
-        'my_list': my_list,
+        #'my_list': my_list,
         'compulsory_sem3':compulsory_sem3
         }
     return render(request, 'sem3.html', context)
+    
 
 def sem4(request):
-    my_list = ['AI', 'ML', 'DSIP','IS','CC']
-    context = {'my_list': my_list}
+    roll=request.POST.get(roll)
+    pref1=request.POST.get()
+    try:
+        preference_obj = preference.objects.get(roll=roll)
+        print("Preference row already exists for roll number:", roll)
+    except preference.DoesNotExist:
+    # Create a new row with the given roll number and preferences
+        preference_obj = preference.objects.create(roll=roll, preference=preference)
+        print("Preference row created for roll number:", roll)
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+    #context = {'my_list': my_list}
     compulsory_list = subject.objects.filter(sem=3,type='N').values_list('sub_name',flat=True)
     compulsory_sem4 = list(compulsory_list)
     print("Se43: = ",compulsory_sem4)
     context = {
-        'my_list': my_list,
+     #   'my_list': my_list,
         'compulsory_sem4':compulsory_sem4
         }
     return render(request, 'sem4.html', context)
 
 def sem5(request):
+    roll=request.POST.get(roll)
+    pref1=request.POST.get()
+    try:
+        preference_obj = preference.objects.get(roll=roll)
+        print("Preference row already exists for roll number:", roll)
+    except preference.DoesNotExist:
+    # Create a new row with the given roll number and preferences
+        preference_obj = preference.objects.create(roll=roll, preference=preference)
+        print("Preference row created for roll number:", roll)
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
     print("Name = ",name)
@@ -283,8 +351,8 @@ def card(request):
 
     subjects = subject.objects.filter(sem=5,type='DE').values('sub_id','sub_name')
     s5e = [subject['sub_name'] for subject in subjects]
-    students = student.objects.filter(roll_no=16010121813).values('opt_course')
-    # opt_courses = students[0]['opt_course'].split(',')
+    students = student.objects.filter(roll_no=16010121003).values('opt_course')
+    opt_courses = students[0]['opt_course'].split(',')
     opt_courses_flat = [course.strip() for course in opt_courses]
     sem5_elective = ""
     for s1 in opt_courses_flat:
@@ -324,7 +392,7 @@ def card(request):
     #print("Sem8 Elective = ",sem8_elective)
     
     exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
-    exposure1 = list(exp2)
+    exposure1 = list(exp1)
     #print(exposure2)
     for s1 in opt_courses_flat:
         for s2 in exposure1:
@@ -365,8 +433,8 @@ def card(request):
         "honorminor": honorminor,
         "sempass": sem_pass,
     }
-    
-    return render(request, 'card.html')
+    print(context)
+    return render(request, 'card.html',context)
 
 def importt(request):
     return render(request, 'import.html')
@@ -627,8 +695,8 @@ def register(request):
 # def nav(request):
 #     return render(request, 'nav.html')
 
-# def stud_pref(request):
-#     return render(request, "student_pref.html")
+def stud_pref(request):
+    return render(request, "student_pref.html")
 
 # def index(request):
 #     if request.user.is_authenticated:

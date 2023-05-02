@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'choice',
     'preference',
     'social_django',
+    # 'custom_filters'
 
 ]
 ACCOUNT_EMAIL_VERIFICATION = 'none'

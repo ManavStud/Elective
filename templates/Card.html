@@ -90,9 +90,9 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png" alt="user image"
                         class="user_image">
                     <section class="ps-5 align-text-bottom">
-                        <h5 class="mb-n2">Ambaprasad Paresh Pathak</h5>
-                        <a href="faculty_dashboard">faculty_dashboard</a>
-                        <span>Computer Engineering</span>
+                        <h5 class="mb-n2">{{ student_name }}</h5>
+                        <!-- <a href="faculty_dashboard">faculty_dashboard</a> -->
+                        <span>Department : {{ department }}</span>
                     </section>
                 </div>
 
@@ -108,17 +108,12 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                <li>{{compulsary_sem1}}</li>
+                                                
                                             </ul>
                                             <h5>Exposure Course: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{exp1}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -135,17 +130,11 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                <li>{{compulsary_sem2}}</li>
                                             </ul>
                                             <h5>Exposure Course: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{exp1}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -162,18 +151,15 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem3 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
-                                            <h5>Exposure Course: </h5>
+                                            <!-- <h5>Exposure Course: </h5>
                                             <ul class="list mt-2 mb-4">
                                                 <li>Indian Classical Dance:
                                                     Bharatnatyam</li>
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                     </div>
                                 <!-- </div> -->
@@ -189,12 +175,9 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem4 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
                                             <h5>Exposure Course: </h5>
                                             <ul class="list mt-2 mb-4">
@@ -216,17 +199,13 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem5 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
-                                            <h5>Exposure Course: </h5>
+                                            <h5>Departmental Elective: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{sem5_elective}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -243,17 +222,13 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem6 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
-                                            <h5>Exposure Course: </h5>
+                                            <h5>Departmental Elective: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{sem6_elective}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -270,17 +245,13 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem7 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
-                                            <h5>Exposure Course: </h5>
+                                            <h5>Departmental elective: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{sem7_elective}}</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -297,17 +268,13 @@
                                         <div class="card-body">
                                             <h5 class="card-title pricing-card-title">Compulsory Subjects:</h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Applied Mathematics I</li>
-                                                <li>Engineering Chemistry</li>
-                                                <li>Engineering Drawing</li>
-                                                <li>Elements of Electrical & Electronics Engineering</li>
-                                                <li>Programming in C</li>
-                                                <li>Workshop I</li>
+                                                {% for item in compulsory_sem8 %}
+                                                <li>{{ item }}</li>
+                                                {% endfor %}
                                             </ul>
                                             <h5>Exposure Course: </h5>
                                             <ul class="list mt-2 mb-4">
-                                                <li>Indian Classical Dance:
-                                                    Bharatnatyam</li>
+                                                <li>{{sem8_elective}}</li>
                                             </ul>
                                         </div>
                                     </div>
