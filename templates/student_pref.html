@@ -138,10 +138,16 @@
     <main class="flex-shrink-0 my-5">
         <div class="container" id="main_container">
             <div class="list-group">
-                {% for name in student_names %}
+
                 <a href="#" class="list-group-item list-group-item-action list-group-item-primary"
-                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-bs-opt-course="{{ student.opt_course }}">{{ name }}</a>
-                {% endfor %}
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">16010121818 - Bhavya
+                    Sura</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary"
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">16010121819 - Chinmay
+                    Teli</a>
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary"
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter">16010121813 - Manav
+                    Rupani</a>
             </div>
 
             <!-- Modal -->
@@ -158,8 +164,8 @@
                                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
                                     alt="user image" class="user_image">
                                 <section class="ps-5 align-text-bottom">
-                                    <h5 class="mb-n2">{{ name }}</h5>
-                                    <span>{{ dept }}</span>
+                                    <h5 class="mb-n2">Ambaprasad Paresh Pathak</h5>
+                                    <span>Computer Engineering</span>
                                 </section>
                             </div>
                             <div class="card">
@@ -167,7 +173,8 @@
                                     <h5 class="card-title">Past Electives</h5>
                                     <p>Honors/Minors: <span class="badge text-bg-info">Cybersecurity and
                                             Forensics</span></p>
-                                    <p>Departmental Elective I: <span class="badge text-bg-info"><span id="opt_course"></span></p>
+                                    <p>Departmental Elective I: <span class="badge text-bg-info">Advance Database and
+                                            Data Warehousing</span></p>
                                     <p>Departmental Elective II: <span class="badge text-bg-info">Mircoservices and
                                             Devops</span></p>
                                 </div>
@@ -296,15 +303,7 @@
         </div>
 
     </main>
-    <script>
-        var myModal = document.getElementById('exampleModalCenter')
-        myModal.addEventListener('show.bs.modal', function (event) {
-           var button = event.relatedTarget
-           var opt_course = button.getAttribute('data-bs-opt-course')
-           var modalOptCourse = myModal.querySelector('#opt_course')
-           modalOptCourse.textContent = opt_course
-        })
-     </script>
+
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
     <script src="{% static './js/bootstrap.js' %}"></script>
     <script src="{% static './js/bootstrap.bundle.js' %}"></script>

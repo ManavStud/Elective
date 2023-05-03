@@ -18,7 +18,7 @@
     <!-- {% include 'nav.html' %}  -->
     <!-- <div style="padding-top: 100px;"> -->
         {% include 'nav.html' %} 
-    <div class="container" style="margin: 5em 0;">
+    <div class="container">
         <!-- {% include 'nav.html' %}  -->
         <header>Semester Details</header>
 
@@ -32,16 +32,15 @@
                                 {{ subject_name }}
                             {% endfor %}</span>
                             <div class="fields">
-                                <div class="subject mb-2">
+                                <div class="subject">
                                     
                                     <label></label>
                                     <input type="text" placeholder="roll no" id="roll" name="roll">
-                                    <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
                                 </div>
                                 <br>
-                                <div class="optional_subject" >
+                                <div class="optional_subject" style="height: 400px; overflow-y: auto;">
                                     {% for item in my_list|slice:":8" %}
-                                    <select class="my-dropdown mb-2" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                                    <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                         <option value="{{ option }}">Select an option</option>
                                         
                                             
@@ -54,9 +53,9 @@
                                     </select>
                                     <!-- {{ compulsory_sem2 }} -->
                                     {% endfor %}
-                                    <!-- <div class="grade"> -->
-                                       
-                                    <!-- </div> -->
+                                    <div class="grade">
+                                        <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
+                                    </div>
                                 <button class="sumbit" type="submit">
                                     <span class="btnText">submit</span>
                                     <i class="uil uil-navigator"></i>

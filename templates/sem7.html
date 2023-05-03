@@ -15,7 +15,7 @@
 <body  style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-    <div class="container" style="margin: 5em 0;">
+    <div class="container">
         <header>Semester Details</header>
 
         <form method="post">
@@ -33,7 +33,7 @@
                         <div class="optional_subject">
                             <br>For Departmental Elective 3 : <br>
                             {% for item in my_list_de3 %}
-                            <select class="my-dropdown mb-2" name="Pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                            <select class="my-dropdown" name="Pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
@@ -52,7 +52,7 @@
                         For Departmental Elective 4 : 
                         <div class="optional_subject">
                             {% for item in my_list_de4 %}
-                            <select class="my-dropdown mb-2" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     

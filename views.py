@@ -13,92 +13,7 @@ from student.models import student
 from django import template
 from preference.models import preference
 
-# register = template.Library()
-
-# @register.filter(name='get_range')
-# def get_range(min_val, max_val):
-#     return range(min_val, max_val + 1)
-
-
-# def user_info(request):
-#     # Retrieve the access token from the session
-#     access_token = request.session.get('access_token')
-#     # Check if access_token is present in the session
-#     if access_token:
-#         try:
-#             # Build the Google Drive API client
-#             credentials = Credentials.from_authorized_user_info(info=access_token)
-#             service = build('drive', 'v3', credentials=credentials)
-#             # Get the user's storage information
-#             about = service.about().get(fields='storageQuota').execute()
-#             total_storage = about['storageQuota']['limit']
-#             used_storage = about['storageQuota']['usage']
-#             # Render the user_info.html template with the retrieved storage details
-#             context = {'total_storage': total_storage, 'used_storage': used_storage}
-#             return render(request, 'user_info.html', context)
-#         except HttpError as error:
-#             # Handle any errors that occur while accessing the Google Drive API
-#             print(f'An error occurred: {error}')
-#             return render(request, 'error.html', {'error': 'Failed to retrieve user information.'})
-#     else:
-#         # Redirect to the login page if access_token is not present in the session
-#         return redirect('google_login')
-
-# def google_callback(request):
-#     # Get the authorization code from the query parameter
-#     code = request.GET.get('code', None)
-#     if code:
-#         try:
-#             # Exchange authorization code for access token
-#             credentials = Credentials.from_authorized_user_code(
-#                 code,
-#                 scopes=['https://www.googleapis.com/auth/userinfo.profile',
-#                         'https://www.googleapis.com/auth/userinfo.email',
-#                         'https://www.googleapis.com/auth/drive.metadata.readonly']
-#             )
-#             # Call the People API to retrieve user information
-#             people_service = build('people', 'v1', credentials=credentials)
-#             person = people_service.people().get(resourceName='people/me', personFields='names,emailAddresses,photos').execute()
-#             # Extract relevant user information
-#             user_name = person['names'][0]['displayName']
-#             user_email = person['emailAddresses'][0]['value']
-#             user_profile_picture = person['photos'][0]['url']
-            
-#             # Call the Drive API to retrieve storage information
-#             drive_service = build('drive', 'v3', credentials=credentials)
-#             about = drive_service.about().get(fields='storageQuota').execute()
-#             total_storage = about['storageQuota']['limit']
-#             used_storage = about['storageQuota']['usage']
-            
-#             # Pass user and storage information to template and render HTML page
-#             return render(request, 'user_info.html', {'user_name': user_name, 'user_email': user_email, 'user_profile_picture': user_profile_picture, 'total_storage': total_storage, 'used_storage': used_storage})
-#         except Exception as e:
-#             # Handle any exceptions that may occur
-#             print(f'Error: {e}')
-#     return HttpResponseRedirect('/login')  # Redirect to login page if authorization code is not present
-# def google_auth(request):
-#     if not request.user.is_authenticated:
-#         return redirect('login')
-
-#     try:
-#         social = UserSocialAuth.objects.get(user=request.user)
-#         extra_data = social.extra_data
-#         # Extract the profile information from the extra_data
-#         profile_info = {
-#             'name': extra_data.get('name', ''),
-#             'email': extra_data.get('email', ''),
-#             'picture': extra_data.get('picture', ''),
-#         }
-#     except UserSocialAuth.DoesNotExist:
-#         profile_info = {}
-#     return render(request, 'profile.html', {'profile_info': profile_info})
-
 def login(request):
-    # context={
-    #     'google_client_id': settings.GOOGLE_CLIENT_ID,
-    #     'google_client_secret': settings.GOOGLE_CLIENT_SECRET
-    # }
-    
     return render(request,'login.html')
 
 def nav(request):
@@ -110,6 +25,8 @@ def index(request):
         if faculty.objects.filter(fac_email=request.user.email).exists():
             # Redirect user to faculty_dashboard page
             return redirect('faculty_dashboard')
+        else:
+            return redirect('card')
     
     exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
     exposure1 = list(exp1)
@@ -157,7 +74,7 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-@login_required
+
 def sem2(request):
     email = request.user.email
     print(email)
@@ -242,7 +159,7 @@ def sem2(request):
 #     return 
 
 
-@login_required
+
 def sem3(request):
     email = request.user.email
     print(email)
@@ -264,7 +181,7 @@ def sem3(request):
         }
     return render(request, 'sem3.html', context)
     
-@login_required
+
 def sem4(request):
     email = request.user.email
     print(email)
@@ -285,7 +202,7 @@ def sem4(request):
         }
     return render(request, 'sem4.html', context)
 
-@login_required
+
 def sem5(request):
     email = request.user.email
     print(email)
@@ -345,7 +262,7 @@ def sem5(request):
         }
     return render(request, 'sem5.html', context)
 
-@login_required
+
 def sem6(request):
     email = request.user.email
     print(email)
@@ -408,7 +325,7 @@ def sem6(request):
         P.save()
     return render(request, 'sem6.html', context)
 
-@login_required
+
 def sem7(request):
     email = request.user.email
     print(email)
@@ -510,7 +427,7 @@ def sem7(request):
         P.save()
     return render(request, 'sem7.html', context)
 
-@login_required
+
 def sem8(request):
     email = request.user.email
     print(email)
@@ -608,7 +525,7 @@ def sem8(request):
     return render(request, 'sem8.html', context)
 
 
-@login_required
+
 def card(request):
     email = request.user.email
     print(email)
@@ -751,7 +668,7 @@ def card(request):
     print(context)
     return render(request, 'card.html',context)
 
-@login_required
+
 def importt(request):
     email = request.user.email
     print(email)
@@ -766,7 +683,7 @@ def importt(request):
 
     return render(request, 'import.html')
 
-@login_required
+
 def course_selection(request):
     email = request.user.email
     print(email)
@@ -780,7 +697,7 @@ def course_selection(request):
 
     return render(request, 'course_selection.html')
 
-@login_required
+
 def faculty_dashboard(request):
     email = request.user.email
     print(email)
@@ -800,7 +717,7 @@ def faculty_dashboard(request):
     return redirect('card')
 
 
-@login_required
+
 def register(request):
     # compulsory_list = subject.objects.filter(sem=1,type='N').values_list('sub_name',flat=True)
     # compulsory_sem1 = list(compulsory_list)
@@ -1056,7 +973,14 @@ def register(request):
 #     return render(request, 'nav.html')
 
 def stud_pref(request):
-    return render(request, "student_pref.html")
+    students = student.objects.all()
+    student_names = [student.stud_name for student in students]
+    context = {'student_names': student_names}
+    return render(request, 'student_pref.html', context)
+    # stud_name = student.objects.all()
+    # stud_name = [stud_name for student in student]
+    # context = {'stud_name': stud_name}
+    # return render(request, 'student_pref.html', context)
 
 # def index(request):
 #     if request.user.is_authenticated:

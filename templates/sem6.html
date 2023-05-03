@@ -15,7 +15,7 @@
 <body  style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-    <div class="container" style="margin: 5em 0;">
+    <div class="container">
         <header>Semester Details</header>
 
         <form method="post">
@@ -23,14 +23,15 @@
             <div class="form first">
                 <div class="details personal">
                     <div class="fields">
-                        <div class="subject mb-2">
-                                <label></label>
-                                <input type="text" placeholder="roll no" id="roll" name="roll"> 
-                                    <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
+                        <div class="subject">
+                            
+                            <label></label>
+                            <input type="text" placeholder="roll no" id="roll" name="roll">
                         </div>
-                        <div class="optional_subject">
+                        <br>
+                        <div class="optional_subject" style="height: 200px; overflow-y: auto;">
                             {% for item in my_list|slice:":8" %}
-                            <select class="my-dropdown mb-3" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
+                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
@@ -43,7 +44,9 @@
                             </select>
                             <!-- {{ compulsory_sem2 }} -->
                             {% endfor %}
-                           
+                            <div class="grade">
+                                <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
+                            </div>
                         </div>
                         <button class="sumbit" type="submit">
                             <span class="btnText">submit</span>
