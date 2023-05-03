@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+    
+    .container2 {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .box2 {
+      flex: 1 0 25%;
+      background-color: #ccc;
+      height: 100px;
+      margin: 10px;
+    }
+ 
+    .big {
+      font-size: 1.2em;
+    }
+    
+    .small {
+      font-size: .7em;
+    }
+    
+    .square {
+      width: .2em;
+      height: .7em;
+      margin: .5em;
+      display: inline-block;
+    }
+    
+    /* Custom dropdown */
+    .custom-dropdown {
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 10px; /* demo only */
+    }
+    
+    .custom-dropdown select {
+      background-color: #0A2647;
+      color: #fff;
+      font-size: inherit;
+      padding: .5em;
+      border: 0;
+      margin: 0;
+      border-radius: 3px;
+      text-indent: 0.01px;
+      text-overflow: '';
+    }
+    
+    .custom-dropdown::before,
+    .custom-dropdown::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+    
+    .custom-dropdown::after { /*  Custom dropdown arrow */
+      content: "\25BC";
+      height: 1em;
+      font-size: .625em;
+      line-height: 1;
+      right: 1.2em;
+      top: 50%;
+      margin-top: -.5em;
+    }
+    
+    .custom-dropdown::before { /*  Custom dropdown arrow cover */
+      width: 2em;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: 0 3px 3px 0;
+    }
+    
+    .custom-dropdown select[disabled] {
+      color: rgba(0,0,0,.3);
+    }
+    
+    .custom-dropdown select[disabled]::after {
+      color: rgba(0,0,0,.1);
+    }
+    
+    .custom-dropdown::before {
+      background-color: rgba(0,0,0,.15);
+    }
+    
+    .custom-dropdown::after {
+      color: rgba(0,0,0,.4);
+    }
+
+    .tab1 {
+      tab-size: 2;
+      white-space: pre-wrap;
+    }
+    
+    .title {
+      color: grey;
+      font-size: 18px;
+    }
+
+    .tab2 {
+      tab-size: 2;
+      white-space: pre-wrap;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      max-width: 100%;
+      font-size: 18px;
+    }
+
+    pre{
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .left {
+      flex: 0 0 25%;
+      align-items: flex-start;
+      margin: 0% 0% 0% 1%;
+      padding: 1%;
+    }
+
+    .right{
+      flex: 0 0 75%;
+      margin: 0% 0% 0% 1%;
+      margin-top: 0%;
+      padding: 1%;
+    }
+
+    body {
+      resize: none;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      font-family: 'Times New Roman', Times, serif;
+    }
+
+    .input1 {
+      pointer-events: none;
+      font-size: 12px;
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      height: 20vh;
+      width: 25%;
+    }
+
+    .col {
+      flex: 1;
+      box-sizing: border-box;
+      padding: 2px;
+    }
+
+    .right-end{
+      align-items: flex-end;
+      display: flex;
+      justify-content: flex-end; 
+      padding: 2%
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="border-bottom:2px solid #ccc;">
+    <div class="left" style="border-right: 2px solid #ccc;"><img src="profile.png" alt="John" style="width:95%;"></div>
+    <div class="right">
+
+      <pre class="tab2">Name: Manav Hiren Rupani      Email ID: manav.rupani@somaiya.edu</pre>
+      <pre class="tab2">Semester: VI    Department: Computer Engineering </pre>
+      <pre
+        class="tab2">Honours/Minors: Cyber Security & Forensics    Status: <button class=" btn btn-success">Ongoing</button></pre>
+
+      <pre class="tab2">KT Status: None </pre>
+    </div>
+  </div>
+  </div>
+  <B style="font-size: 20px;font-family:Arial, Helvetica, sans-serif;">Student Preferences</B>
+  <br><br>
+  <div class="d-flex flex-row">
+    <div class="col">
+      <div class="card" style="width: 98%; padding:0%">
+        <div class="card-title">
+          <p class="card-text" style="padding-right: 2%;">
+            <center>Department Elective</center>
+              <span class="custom-dropdown">
+                <select style="width: 200px;">
+                    <option>Micro Services & Devops</option>
+                    <option>Compiler Construction</option>  
+                    <option>Data Mining & Business Intelligence</option>
+                    <option>Software Testing & Quality Assurance</option>
+                    <option>Wireless Sensor networks & IOT</option>
+                    <option>Mobile Communication & Adhoc Networks</option>
+                    <option>Machine Learning</option>
+                    <option>Applied Cryptography</option>
+                    <option>Cloud Computing</option>
+                </select>
+              </span>
+            </p>
+        </div>
+        <center>
+        <div class="card-header" style="font-weight: 700;padding:0%;">
+          Disallowed Courses
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cloud Computing</li>
+          <li class="list-group-item">Applied Cryptography</li>
+        </ul>
+      </div>
+    </center>
+      
+    </div>
+    <div class="col">
+
+
+      <div class="card" style="width: 98%; padding:0%">
+        <div class="card-title">
+          <p class="card-text" style="padding-right: 2%;">
+            <center>OEHM</center>
+            <span class="custom-dropdown">
+              <select style="width: 200px;">
+                  <option>Spanish</option>
+                  <option>French</option>  
+                  <option>German</option>
+              </select>
+            </span>
+            </p>
+        </div>
+        <center>
+        <div class="card-header" style="font-weight: 700;padding:0%;">
+          Disallowed Courses
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" style="height: 41px;"></li>
+          <li class="list-group-item" style="height: 41px;"></li>
+          
+        </ul>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card" style="width: 98%; padding:0%">
+        <div class="card-title">
+          <p class="card-text" style="padding-right: 2%;">
+            <center>OET</center>
+            <span class="custom-dropdown">
+              <select style="width: 200px;">
+                  <option>Python for Data Science</option>
+                  <option>C & C++</option>  
+                  <option>C# and Embedded Programming</option>
+              </select>
+            </span>
+            </p>
+        </div>
+        <center>
+        <div class="card-header" style="font-weight: 700;padding:0%;">
+          Disallowed Courses
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" style="height: 41px;"></li>
+          <li class="list-group-item" style="height: 41px;"></li>   
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class ="right-end">
+    <button type="button" class="btn btn-info" style="color: white">Approve</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+
+</body>
+</html>

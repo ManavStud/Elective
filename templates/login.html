@@ -1,0 +1,90 @@
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load socialaccount %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+</head>
+
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 10px;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -10px;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 8px;
+    }
+</style>
+
+<body>
+    <main class="form-signin w-100 m-auto">
+        <form class="login_form">
+            <article class="text-center">
+                <img class="mb-4"
+                    src="https://lms-kjsce.somaiya.edu/pluginfile.php/1/theme_essential/logo/1669712810/engg-logo.png"
+                    alt="logo" width="100">
+            </article>
+
+            <h4 class="mb-3 fw-normal text-center">Sign In to Continue</h4>
+
+            <div class="form-floating">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+            </div> <br>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <button class="w-100 btn btn-md btn-primary" type="submit">Sign in</button>
+
+            <a href="{% provider_login_url 'google' %}?next=/"><i class="fa-brands fa-google"
+                    style="margin-right: 20px;"></i>Sign in with
+                Somaiya Mail</a>
+                <!-- <a href="#"><i class="fa-brands fa-google"
+                    style="margin-right: 20px;"></i>Sign in with
+                Somaiya Mail</a> -->
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1ad43aed0a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

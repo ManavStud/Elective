@@ -1,0 +1,314 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elective</title>
+    <link rel="stylesheet" href="{% static './css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-reboot.css' %}">
+    <link rel="stylesheet" href="{% static './css/bootstrap-utilities.css' %}">
+</head>
+
+<style>
+    /* for sticky footer */
+    #main_container {
+        padding: 60px 15px 0;
+    }
+
+    .user_image {
+        height: 100px;
+        width: 100px;
+        border: 1px solid black;
+        border-radius: 50%;
+    }
+
+    .student_card {
+        border: 1px solid black;
+        border-radius: 10px;
+        padding: 1.5em;
+    }
+
+    #myCarousel {
+        margin-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .carousel-inner .carousel-item>div {
+            display: none;
+        }
+
+        .carousel-inner .carousel-item>div:first-child {
+            display: block;
+        }
+    }
+
+    .carousel-inner .carousel-item.active,
+    .carousel-inner .carousel-item-start,
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+        display: flex;
+    }
+
+    @media (min-width: 768px) {
+
+        .carousel-inner .carousel-item-right.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-item-next:not(.carousel-item-start) {
+            transform: translateX(25%) !important;
+        }
+
+        .carousel-inner .carousel-item-left.active,
+        .carousel-item-prev:not(.carousel-item-end),
+        .active.carousel-item-start,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+
+        .carousel-item-next.carousel-item-start,
+        .active.carousel-item-end {
+            transform: translateX(0) !important;
+        }
+
+        .carousel-inner .carousel-item-prev,
+        .carousel-item-prev:not(.carousel-item-end) {
+            transform: translateX(-25%) !important;
+        }
+    }
+</style>
+
+<body class="d-flex flex-column h-100">
+    <header>
+        <nav class="navbar navbar-dark bg-dark fixed-top" aria-label="Dark offcanvas navbar">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <main style="margin:0 40px;"><a class="navbar-brand" href="#">LOGO</a></main>
+
+
+                <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbarDark"
+                    aria-labelledby="offcanvasNavbarDarkLabel">
+                    <div class="offcanvas-header">
+                        <h4 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Menu</h4>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1">
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 1</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big><a class="nav-link" aria-current="page" href="#">Semester 2</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 3</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 4</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 5</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 6</a></big>
+                            </li>
+                            <li class="nav-item">
+                                <big> <a class="nav-link" aria-current="page" href="#">Semester 7</a> </big>
+                            </li>
+                            <li class="nav-item">
+                                <big><a class="nav-link" aria-current="page" href="#">Semester 8</a></big>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <!-- Begin page content -->
+    <main class="flex-shrink-0 my-5">
+        <div class="container" id="main_container">
+            <div class="list-group">
+                {% for name in student_names %}
+                <a href="#" class="list-group-item list-group-item-action list-group-item-primary"
+                    data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-bs-opt-course="{{ student.opt_course }}">{{ name }}</a>
+                {% endfor %}
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Detailed View</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex mb-4">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+                                    alt="user image" class="user_image">
+                                <section class="ps-5 align-text-bottom">
+                                    <h5 class="mb-n2">{{ name }}</h5>
+                                    <span>{{ dept }}</span>
+                                </section>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Past Electives</h5>
+                                    <p>Honors/Minors: <span class="badge text-bg-info">Cybersecurity and
+                                            Forensics</span></p>
+                                    <p>Departmental Elective I: <span class="badge text-bg-info"><span id="opt_course"></span></p>
+                                    <p>Departmental Elective II: <span class="badge text-bg-info">Mircoservices and
+                                            Devops</span></p>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Needs Approval</h5>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Departmental Elective III</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Adv Cloud Computing" value="Adv Cloud Computing" checked>
+                                                <label class="form-check-label" for="Adv Cloud Computing">
+                                                    Adv Cloud Computing
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="User Experience Design" value="User Experience Design">
+                                                <label class="form-check-label" for="User Experience Design">
+                                                    User Experience Design
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Big Data Analytics" value="Big Data Analytics">
+                                                <label class="form-check-label" for="Big Data Analytics">
+                                                    Big Data Analytics
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Reinforcement Learning" value="Reinforcement Learning">
+                                                <label class="form-check-label" for="Reinforcement Learning">
+                                                    Reinforcement Learning
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Geospatial Information System and Spatial Computing"
+                                                    value="Geospatial Information System and Spatial Computing">
+                                                <label class="form-check-label"
+                                                    for="Geospatial Information System and Spatial Computing">
+                                                    Geospatial Information System and Spatial Computing
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Secure Coding" value="Secure Coding">
+                                                <label class="form-check-label" for="Secure Coding">
+                                                    Secure Coding
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Cyber Security, Forensics and CyberLaw"
+                                                    value="Cyber Security, Forensics and CyberLaw">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Cyber Security, Forensics and CyberLaw
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h5>Departmental Elective IV</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Data Science" value="Data Science">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Data Science
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Blockchain Technology" value="Blockchain Technology">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Blockchain Technology
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Computer Vision" value="Computer Vision">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Computer Vision
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Computer Simulation and Modelling"
+                                                    value="Computer Simulation and Modelling">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Computer Simulation and Modelling
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="C# Programming and Net Technology"
+                                                    value="C# Programming and Net Technology">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    C# Programming and Net Technology
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Agile Project Management" value="Agile Project Management">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Agile Project Management
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Decline</button>
+                            <button type="button" class="btn btn-success">Approve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        var myModal = document.getElementById('exampleModalCenter')
+        myModal.addEventListener('show.bs.modal', function (event) {
+           var button = event.relatedTarget
+           var opt_course = button.getAttribute('data-bs-opt-course')
+           var modalOptCourse = myModal.querySelector('#opt_course')
+           modalOptCourse.textContent = opt_course
+        })
+     </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="{% static './js/bootstrap.js' %}"></script>
+    <script src="{% static './js/bootstrap.bundle.js' %}"></script>
+    <script src="https://kit.fontawesome.com/1ad43aed0a.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
