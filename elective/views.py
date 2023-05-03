@@ -740,10 +740,15 @@ def register(request):
 
 def stud_pref(request):
     students = student.objects.all()
-    student_names = [student.stud_name for student in students]
-    context = {'student_names': student_names}
+    # student_names = [student.stud_name for student in students]
+    context = {'students': students}
     return render(request, 'student_pref.html', context)
     # stud_name = student.objects.all()
     # stud_name = [stud_name for student in student]
     # context = {'stud_name': stud_name}
     # return render(request, 'student_pref.html', context)
+
+
+def stud_detail(request, roll_no):
+    student = student.objects.get(roll_no=roll_no)
+    return render(request, 'student_detail.html', {'student': student})

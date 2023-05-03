@@ -2,7 +2,8 @@ from django.db import models
 from subject.models import subject
 
 class student(models.Model):
-    roll_no= models.CharField(max_length=20, primary_key=True)
+    id = models.AutoField(primary_key=True)
+    roll_no= models.CharField(max_length=20)
     stud_name = models.CharField(max_length=60)
     dept = models.CharField(max_length=10)
     sem_pass = models.CharField(max_length=100)

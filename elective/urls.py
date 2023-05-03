@@ -52,6 +52,7 @@ urlpatterns = [
     path('accounts/', include('social_django.urls', namespace='social')),
     # path('user_info/', user_info, name='user_info'),
     path('stud_pref',views.stud_pref),
+    path('stud_pref/<int:roll_no>',views.stud_detail),
     path('about',views.about),
     path('contact',views.contact)
 ]

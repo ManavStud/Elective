@@ -1,0 +1,148 @@
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Detailed View</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex mb-4">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
+                                    alt="user image" class="user_image">
+                                <section class="ps-5 align-text-bottom">
+                                    <h5 class="mb-n2">{{ student.name }}</h5>
+                                    <span>{{ student.dept }}</span>
+                                </section>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Past Electives</h5>
+                                    <p>Honors/Minors: <span class="badge text-bg-info">Cybersecurity and
+                                            Forensics</span></p>
+                                    <p>Departmental Elective I: <span class="badge text-bg-info"><span id="opt_course"></span></p>
+                                    <p>Departmental Elective II: <span class="badge text-bg-info">Mircoservices and
+                                            Devops</span></p>
+                                </div>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">Needs Approval</h5>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h5>Departmental Elective III</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Adv Cloud Computing" value="Adv Cloud Computing" checked>
+                                                <label class="form-check-label" for="Adv Cloud Computing">
+                                                    Adv Cloud Computing
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="User Experience Design" value="User Experience Design">
+                                                <label class="form-check-label" for="User Experience Design">
+                                                    User Experience Design
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Big Data Analytics" value="Big Data Analytics">
+                                                <label class="form-check-label" for="Big Data Analytics">
+                                                    Big Data Analytics
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Reinforcement Learning" value="Reinforcement Learning">
+                                                <label class="form-check-label" for="Reinforcement Learning">
+                                                    Reinforcement Learning
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Geospatial Information System and Spatial Computing"
+                                                    value="Geospatial Information System and Spatial Computing">
+                                                <label class="form-check-label"
+                                                    for="Geospatial Information System and Spatial Computing">
+                                                    Geospatial Information System and Spatial Computing
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Secure Coding" value="Secure Coding">
+                                                <label class="form-check-label" for="Secure Coding">
+                                                    Secure Coding
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Cyber Security, Forensics and CyberLaw"
+                                                    value="Cyber Security, Forensics and CyberLaw">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Cyber Security, Forensics and CyberLaw
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h5>Departmental Elective IV</h5>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Data Science" value="Data Science">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Data Science
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Blockchain Technology" value="Blockchain Technology">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Blockchain Technology
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Computer Vision" value="Computer Vision">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Computer Vision
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Computer Simulation and Modelling"
+                                                    value="Computer Simulation and Modelling">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Computer Simulation and Modelling
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="C# Programming and Net Technology"
+                                                    value="C# Programming and Net Technology">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    C# Programming and Net Technology
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="exampleRadios"
+                                                    id="Agile Project Management" value="Agile Project Management">
+                                                <label class="form-check-label" for="exampleRadios1">
+                                                    Agile Project Management
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Decline</button>
+                            <button type="button" class="btn btn-success">Approve</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
