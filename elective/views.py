@@ -656,7 +656,7 @@ def importt(request):
 
 
 def course_selection(request):
-    stud = preference.objects.values_list('roll',flat=True).distinct()
+    stud = preference.objects.values_list('roll_no',flat=True).distinct()
     stud = list(stud)
     print(stud)
     hon_min = []
@@ -666,12 +666,13 @@ def course_selection(request):
         print(distinct_hon_min)
         if distinct_hon_min[0] not in hon_min:
             hon_min.append(distinct_hon_min[0])
-    email = request.user.email
+    email = 'chinmay.teli@somaiya.edu'
     print(email)
     
     rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
+    print(hon_min)
     context = {
         'hon_min' : hon_min
     }

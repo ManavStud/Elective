@@ -122,7 +122,7 @@ WSGI_APPLICATION = 'elective.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "elective",
+        'NAME': "elective2",
         'USER': "postgres",
         'PASSWORD': "root",
         'HOST': "127.0.0.1",
