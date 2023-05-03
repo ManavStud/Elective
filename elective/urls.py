@@ -1,7 +1,8 @@
-"""elective URL Configuration
+"""
+URL configuration for elective project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -20,16 +21,12 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.views.generic import TemplateView
 from allauth.account.views import LoginView
-# from .views import user_info
-
-#from .views import google_auth
-
 urlpatterns = [
 #    path('google-auth/', google_auth, name='google_auth'),
     path('admin/', admin.site.urls),
     path('register/',views.register,name="register"),
     path('',views.index,name="index"),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', TemplateView.as_view(template_name='Home.html'), name='home'),
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('accounts/', include('allauth.urls')),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
@@ -51,5 +48,8 @@ urlpatterns = [
     path('',include("allauth.urls")),
     path('accounts/', include('social_django.urls', namespace='social')),
     # path('user_info/', user_info, name='user_info'),
-    path('stud_pref',views.stud_pref)
+    path('stud_pref',views.stud_pref),
+    path('stud_pref/<int:roll_no>',views.student_detail),
+    path('about',views.about),
+    path('contact',views.contact)
 ]

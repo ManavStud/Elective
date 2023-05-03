@@ -1,17 +1,20 @@
 #from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-from student.models import student
+from DB.models import student,subject,honorminor,exposure_courses,faculty,preference
 from django.conf import settings
-from subject.models import subject,Exposure_Courses
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from social_django.models import UserSocialAuth
-from student.models import faculty
-from student.models import student
 from django import template
-from preference.models import preference
+
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
 
 def login(request):
     return render(request,'login.html')
@@ -28,7 +31,7 @@ def index(request):
         else:
             return redirect('card')
     
-    exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
+    exp1 = exposure_courses.objects.filter(sem=1).values_list('course_name',flat=True)
     exposure1 = list(exp1)
     # for s1 in opt_courses_flat:
     #     for s2 in exposure1:
@@ -84,7 +87,7 @@ def sem2(request):
     print(roll_fetch)
 
 
-    exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
+    exp2 = exposure_courses.objects.filter(sem=2).values_list('course_name',flat=True)
     exposure2 = list(exp2)
     compulsory_list = subject.objects.filter(sem=2,type='N').values_list('sub_name',flat=True)
     compulsory_sem2 = list(compulsory_list)
@@ -593,7 +596,7 @@ def card(request):
                 sem8_elective.append(s1)
     #print("Sem8 Elective = ",sem8_elective)
     
-    exp1 = Exposure_Courses.objects.filter(sem=1).values_list('course_name',flat=True)
+    exp1 = exposure_courses.objects.filter(sem=1).values_list('course_name',flat=True)
     exposure1 = list(exp1)
     #print(exposure2)
     for s1 in opt_courses_flat:
@@ -602,7 +605,7 @@ def card(request):
                 exp1 = s1
                 break
     
-    exp2 = Exposure_Courses.objects.filter(sem=2).values_list('course_name',flat=True)
+    exp2 = exposure_courses.objects.filter(sem=2).values_list('course_name',flat=True)
     exposure2 = list(exp2)
     #print(exposure2)
     for s1 in opt_courses_flat:
@@ -649,18 +652,18 @@ def importt(request):
         return HttpResponse("You are not authorized to access this page.")
     roll_fetch=rollno.roll_no
     print(roll_fetch)
-    
-
     return render(request, 'import.html')
 
 
 def course_selection(request):
     stud = preference.objects.values_list('roll',flat=True).distinct()
     stud = list(stud)
+    print(stud)
     hon_min = []
     for s in stud:
         distinct_hon_min = student.objects.filter(roll_no=s).values_list('hon_min', flat=True)
         distinct_hon_min = list(distinct_hon_min)
+        print(distinct_hon_min)
         if distinct_hon_min[0] not in hon_min:
             hon_min.append(distinct_hon_min[0])
     email = request.user.email
@@ -669,16 +672,15 @@ def course_selection(request):
     rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
-
-    return render(request, 'course_selection.html')
+    context = {
+        'hon_min' : hon_min
+    }
+    return render(request, 'course_selection.html', context)
 
 
 def faculty_dashboard(request):
     email = request.user.email
     print(email)
-    rollno=student.objects.get(email=email)
-    roll_fetch=rollno.roll_no
-    print(roll_fetch)
     
     if request.user.is_authenticated:
         # Check if user's email is in the faculty table
@@ -734,10 +736,15 @@ def register(request):
 
 def stud_pref(request):
     students = student.objects.all()
-    student_names = [student.stud_name for student in students]
-    context = {'student_names': student_names}
+    # student_names = [student.stud_name for student in students]
+    context = {'student_names': students}
     return render(request, 'student_pref.html', context)
     # stud_name = student.objects.all()
     # stud_name = [stud_name for student in student]
     # context = {'stud_name': stud_name}
     # return render(request, 'student_pref.html', context)
+
+
+def student_detail(request, roll_no):
+    student = tudent.objects.get(roll_no=roll_no)
+    return render(request, 'student_detail.html', {'student': student})
