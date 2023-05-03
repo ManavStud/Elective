@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
 {% load static %}
-<!-- {% load socialaccount %} -->
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+{% load socialaccount %}
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -13,7 +11,7 @@
 </head>
 
 <body>
-    <div class="container" style="margin: 5em 0;">
+    <div class="container">
         {% if user.is_authenticated %}
             <p>Welcome back, {{ user.username }}!</p>
             <a href="{% url 'logout' %}">logout ki nishani</a>
@@ -31,7 +29,6 @@
                                 <div class="subject">
                                     <label></label>
                                     <input type="text" placeholder="roll no">
-                                    <input type="number" placeholder="Enter GPA" step=".01">
                                 </div>
                                 <br>
                                 <div class="optional_subject">
@@ -44,10 +41,11 @@
                                             </select>
                                         {% endfor %}
                                 </div>
-                                
-                                <!-- <div class="grade">
-                                    
-                                </div> -->
+                                <br>
+                                <br>
+                                <div class="grade">
+                                    <input type="number" placeholder="Enter GPA" step=".01">
+                                </div>
                             </div>
                             <button class="sumbit">
                                 <span class="btnText">submit</span>
@@ -57,42 +55,15 @@
                     </div>
                 </div>
             </div>
-        </form>
-    </div>
-    <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        let dropdowns = document.querySelectorAll('select');
-        let previousOptions = {};
-        dropdowns.forEach((dropdown, index) => {
-            dropdown.addEventListener('change', function () {
-                // Get the selected option's value
-                let selectedOption = this.value;
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-75f7"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Made with by BMC</p>
+      </div></footer>
 
-                // Loop through all the dropdowns
-                dropdowns.forEach((otherDropdown, otherIndex) => {
-                    // If the current dropdown is not the same as the selected dropdown
-                    if (otherIndex !== index) {
-                        // Loop through all the options in the other dropdown
-                        otherDropdown.querySelectorAll('option').forEach(option => {
-                            // If the option value matches the selected value, disable it
-                            if (option.value === selectedOption) {
-                                option.disabled = true;
-                                previousOptions[otherDropdown.id] = option.value;
-                            } 
-                            // else if (previousOptions[otherDropdown.id] === option.value) {
-                            //     // Re-enable previously selected options
-                            //     option.disabled = false;
-                            //     delete previousOptions[otherDropdown.id];
-                            // }
-                        });
-                    }
-                });
-            });
-        });
-
-
-    </script>
-</body>
-
-</html>
+  
+</body></html>
