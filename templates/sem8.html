@@ -15,7 +15,7 @@
 <body  style="background-color: #4070f4;">
     {% include 'nav.html' %} 
 
-    <div class="container">
+    <div class="container" style="margin: 5em 0;">
         <header>Semester Details</header>
 
         <form method="post">
@@ -30,17 +30,16 @@
                                 <input type="number" placeholder="Enter GPA" step=".01" name="gpa" id="gpa">
                             
                         </div>
-                        <br>
-                        <br>
-                        <div class="optional_subject">For Departmental Elective 5 : <br>
+                        <div class="optional_subject">
+                            <br>For Departmental Elective 5 : <br>
                             {% for item in my_list_de5 %}
-                            <select class="my-dropdown" name="Pref{{forloop.counter}}" id="Pref{{forloop.counter}}">
+                            <select class="my-dropdown mb-2" name="Pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
                                     {% for option in my_list_de5 %}
                                         
-                                            <option id ="pref_de5_{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
+                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
                                         
                                     {% endfor %}
                                 
@@ -49,16 +48,17 @@
                             {% endfor %}
                            
                         </div>
-                        For Departmental Elective 6 : 
+                        <br><br>
+                        For Departmental Elective 6: 
                         <div class="optional_subject">
                             {% for item in my_list_de6 %}
-                            <select class="my-dropdown" name="pref{{forloop.counter}}" id="pref{{forloop.counter}}">
+                            <select class="my-dropdown mb-2" name="pref{{forloop.counter}}" id="dropdown-{{forloop.counter}}">
                                 <option value="{{ option }}">Select an option</option>
                                 
                                     
                                     {% for option in my_list_de6 %}
                                         
-                                            <option id ="pref_de6_{{forloop.counter}}" name="pref{{forloop.counter}}">{{ option }}</option>
+                                            <option id ="Pref{{forloop.counter}}" name="Pref{{forloop.counter}}">{{ option }}</option>
                                         
                                     {% endfor %}
                                 
