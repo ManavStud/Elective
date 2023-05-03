@@ -13,6 +13,13 @@ from student.models import student
 from django import template
 from preference.models import preference
 
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
 def login(request):
     return render(request,'login.html')
 
@@ -649,18 +656,18 @@ def importt(request):
         return HttpResponse("You are not authorized to access this page.")
     roll_fetch=rollno.roll_no
     print(roll_fetch)
-    
-
     return render(request, 'import.html')
 
 
 def course_selection(request):
     stud = preference.objects.values_list('roll',flat=True).distinct()
     stud = list(stud)
+    print(stud)
     hon_min = []
     for s in stud:
         distinct_hon_min = student.objects.filter(roll_no=s).values_list('hon_min', flat=True)
         distinct_hon_min = list(distinct_hon_min)
+        print(distinct_hon_min)
         if distinct_hon_min[0] not in hon_min:
             hon_min.append(distinct_hon_min[0])
     email = request.user.email
@@ -669,16 +676,15 @@ def course_selection(request):
     rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
-
-    return render(request, 'course_selection.html')
+    context = {
+        'hon_min' : hon_min
+    }
+    return render(request, 'course_selection.html', context)
 
 
 def faculty_dashboard(request):
     email = request.user.email
     print(email)
-    rollno=student.objects.get(email=email)
-    roll_fetch=rollno.roll_no
-    print(roll_fetch)
     
     if request.user.is_authenticated:
         # Check if user's email is in the faculty table

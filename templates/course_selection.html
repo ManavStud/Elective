@@ -32,10 +32,13 @@
                 <thead>
                     <tr>
                         <th scope="col">Subject</th>
-                        <th scope="col">Honors 1</th>
+                        <!-- <th scope="col">Honors 1</th>
                         <th scope="col">Honors 2</th>
                         <th scope="col">Minors 1</th>
-                        <th scope="col">Minors 2</th>
+                        <th scope="col">Minors 2</th> -->
+                        {% for hon_min in hon_min %}
+                            <th scope="col">{{hon_min}}</th>
+                        {% endfor %}
                     </tr>
                 </thead>
                 <tbody>

@@ -51,5 +51,7 @@ urlpatterns = [
     path('',include("allauth.urls")),
     path('accounts/', include('social_django.urls', namespace='social')),
     # path('user_info/', user_info, name='user_info'),
-    path('stud_pref',views.stud_pref)
+    path('stud_pref',views.stud_pref),
+    path('about',views.about),
+    path('contact',views.contact)
 ]
