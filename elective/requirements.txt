@@ -1,0 +1,6 @@
+DB==0.1.1
+Django==4.1.4
+django_allauth==0.52.0
+google_api_python_client==2.86.0
+protobuf==4.22.4
+social_auth_app_django==5.1.0
