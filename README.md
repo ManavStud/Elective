@@ -22,10 +22,10 @@ Install dependencies
 Setup the database
 
 ```bash
-    pip makemigrations
+    python manage.py makemigrations
 ```
 ```bash
-    pip migrate
+    python manage.py migrate
 ```
 
 Start the server
