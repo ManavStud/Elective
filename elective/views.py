@@ -107,10 +107,10 @@ def sem2(request):
     if request.method == "POST":
         P = preference()
         name_str = student.objects.filter(roll_no=16010121003).values()
-        P.name = name_str[0]['stud_name']
-        P.roll = roll
+        P.stud_name = "Manav"
+        P.roll_no = roll
         P.sem = 2
-        P.dept = name_str[0]['dept']
+        P.dept = "COMP"
         P.pref1 = pref1
         P.pref2 = pref2
         P.pref3 = pref3
@@ -196,15 +196,15 @@ def sem5(request):
     
     if request.method == "POST":
         P = preference()
-        name_str = student.objects.filter(roll_no=16010121003).values()
-        P.name = name_str[0]['stud_name']
-        P.roll = roll
-        P.sem = 2
-        P.dept = name_str[0]['dept']
+        P.stud_name = "X"
+        P.roll_no = roll
+        P.sem = 5
+        P.dept = "COMP"
         P.pref1 = pref1
         P.pref2 = pref2
         P.pref3 = pref3
         P.pref4 = pref4
+        print(P)
         P.save()
     print(gpa)
     print(roll)
@@ -244,8 +244,8 @@ def sem6(request):
     #     rollno=student.objects.get(email=email)
     # except student.DoesNotExist:
     #     return HttpResponse("You are not authorized to access this page.")
-    roll_fetch=rollno.roll_no
-    print(roll_fetch)
+    #roll_fetch=rollno.roll_no
+    #print(roll_fetch)
     
     name_str = student.objects.filter(roll_no=16010121003).values('stud_name')
     name = name_str[0]['stud_name']
@@ -303,10 +303,7 @@ def sem7(request):
     email = request.user.email
     print(email)
     
-    try:
-        rollno=student.objects.get(email=email)
-    except student.DoesNotExist:
-        return HttpResponse("You are not authorized to access this page.")
+    rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
     
@@ -656,6 +653,7 @@ def importt(request):
 
 
 def course_selection(request):
+    
     stud = preference.objects.values_list('roll',flat=True).distinct()
     stud = list(stud)
     print(stud)
@@ -735,14 +733,369 @@ def register(request):
 
 
 def stud_pref(request):
-    students = student.objects.all()
-    # student_names = [student.stud_name for student in students]
-    context = {'student_names': students}
-    return render(request, 'student_pref.html', context)
-    # stud_name = student.objects.all()
-    # stud_name = [stud_name for student in student]
-    # context = {'stud_name': stud_name}
+    import random
+    import matplotlib.pyplot as plt
+    import openpyxl
+    from openpyxl.styles import Alignment
+    import sys 
+    from DB.models import preference
+    from DB.models import student,subject
+    
+    studlist = preference.objects.all().values()
+    subjects = subject.objects.filter(sem=6,type='DE').values_list('sub_name',flat=True)
+    subjects = list(subjects)
+    students = []
+    student_data = []
+    for stud in studlist:
+        preflist = []
+        rollno = stud['roll_no']
+        print(rollno)
+        name = stud['stud_name']
+        dept = stud['dept']
+        preflist.append(stud['pref1'])
+        preflist.append(stud['pref2'])
+        preflist.append(stud['pref3'])
+        preflist.append(stud['pref4'])
+        preflist.append(stud['pref5'])
+        preflist.append(stud['pref6'])
+        preflist.append(stud['pref7'])
+        preflist.append(stud['pref8'])
+        ptr = student.objects.filter(roll_no=rollno).values('gpa')
+        pointer = ptr[0]['gpa']
+        student_data.append([rollno, name, dept, preflist, pointer])
+    print(student_data)
+    # num_preferences = int(input("Enter the number of preferences for each student: "))
+
+    #print(len(students))
+    # # sort students based on pointer value (higher pointer comes first)
+    num = int(input("Enter the number of preferences to display: "))
+    # count the number of appearances of each preference subject
+    preference_subjects_count = {s: 0 for s in subjects}
+    for i in range(num):
+        preference_subjects = [stud[3][i] for stud in student_data]
+        preference_subjects_count = {s: preference_subjects_count[s] + preference_subjects.count(s) for s in subjects}
+
+
+    subject_preferences_count = {}
+    total_appearances = {}
+    for s in subjects:
+        subject_preferences_count[s] = [0] * num
+        total_appearances[s] = 0
+    for i in range(num):
+        preference_subjects = [stud[3][i] for stud in student_data]
+        subject_count = {s: preference_subjects.count(s) for s in subjects}
+        for j, (s, count) in enumerate(subject_count.items()):
+            subject_preferences_count[s][i] = count
+            total_appearances[s] += count
+        # fig, ax = plt.subplots()
+        # ax.pie(list(subject_count.values()), labels=list(subject_count.keys()), autopct='%1.1f%%', startangle=90)
+        # ax.axis('equal')
+        # ax.set_title(f"Preference {i+1}")
+        # plt.show()
+    for s, count in subject_preferences_count.items():
+        print(s, count, f"Total Appearances: {total_appearances[s]}")
+    # sort subjects based on their total appearances
+    sorted_subjects = sorted(total_appearances.items(), key=lambda x: x[1], reverse=True)
+    # extract the top `num` subjects
+    top_subjects = [s for s, count in sorted_subjects[:num]]
+    # extract the count of the top `num` subjects
+    top_subjects_count = [total_appearances[s] for s in top_subjects]
+    print(f"\nTop {num} subjects by appearances:")
+    for i in range(num):
+        print(f"{i+1}. {top_subjects[i]}: {top_subjects_count[i]}")
+        
+    # sort the preferences by their count and extract the top `num` preferences
+    sorted_preferences = sorted(preference_subjects_count.items(), key=lambda x: x[1], reverse=True)
+    preferences = [preference for preference, count in sorted_preferences[:num]]
+    min_batch_size = int(input("Enter minimum batch size: "))
+    max_batch_size = int(len(students)) - int((num-1) * min_batch_size); 
+    print(max_batch_size)
+    # create empty lists for each preference subject
+    lists_dict = {}
+    for preference in preferences:
+        lists_dict[preference] = []
+    # iterate over the students and allocate them to their top preference subject
+    for student in student_data:
+        allocated = False
+        for preference in student[2]:
+            if preference in preferences and len(lists_dict[preference]) < max_batch_size:
+                lists_dict[preference].append(student)
+                allocated = True
+                break
+        if not allocated:
+            lists_dict[preferences[0]].append(student)
+    # count the number of students in each preference subject list
+    subject_student_count = {preference: len(lists_dict[preference]) for preference in preferences}
+    # ensure that each preference subject has at least min_batch_size students in it
+    for preference in preferences:
+        while subject_student_count[preference] < min_batch_size:
+            for student in students:
+                if preference in student[2] and student not in lists_dict[preference]:
+                    lists_dict[preference].append(student)
+                    subject_student_count[preference] += 1
+                    break
+    # print the list of subjects and the students in each subject list
+    for preference, students in lists_dict.items():
+        print(f"{preference}: {len(students)} students")
+        for student in student_data:
+            print(f"- {student[0]} ({student[4]})")
+    # create a new workbook and select the active worksheet
+    import xlsxwriter
+    # create a new workbook and add a worksheet
+    wb = xlsxwriter.Workbook('D:\Downloads\Excel\student_lists.xlsx')
+    sheet = wb.add_worksheet()
+    # define the header row and write it to the sheet
+    header = ['Total Students', '']
+    for subject in lists_dict:
+        header.append(f"{subject}")
+    sheet.write_row(0, 0, header)
+    # define the count row and write it to the sheet
+    count_row = [len(students), '']
+    for subject in lists_dict:
+        count_row.append(len(lists_dict[subject]))
+    count_row.append('')
+    sheet.write_row(1, 0, count_row)
+    # define alignment for the header and count rows
+    header_format = wb.add_format({'align': 'center', 'valign': 'vcenter'})
+    sheet.set_row(0, None, header_format)
+    sheet.set_row(1, None, header_format)
+    # add a blank row after the count row
+    sheet.merge_range(2, 0, 2, 2, '')
+    row_num = 3
+    header = ['Roll No','Student Name', 'Department', 'Pointer','Subject','Approved']
+    sheet.write_row(row_num, 0, header)
+    # iterate over the subjects and write each subject's student list to the sheet
+    row_num += 1 # starting row number
+    for subject in lists_dict:
+        # add a blank row before starting a new subject's list
+        if row_num != 3:
+            sheet.merge_range(row_num, 0, row_num, 4, '')
+            row_num += 1
+        # write the subject name to the sheet
+        sheet.merge_range(row_num, 0, row_num, 4, subject)
+        sheet.write(row_num, 0, subject, header_format)
+        row_num += 1
+        # write each student's details to the sheet
+        for student in lists_dict[subject]:
+            rollno,name, department, _, pointer = student
+            row_data = [rollno, name, department, pointer, subject]
+            sheet.write_row(row_num, 0, row_data)
+            row_num += 1
+    # adjust column widths and row heights
+    # for col in range(num+3):
+    #     sheet.set_column(col, col, len(header[col])+2)
+    # for row in range(1, row_num):
+    #     sheet.set_row(row, 15)
+    # close the workbook
+    wb.close()
+        
+        
+    # args = sys.argv
+    # fake = Faker()
+
+    # department = "Computer"
+    # subjects = ["Math", "Physics", "Chemistry", "Computer Science", "Biology", "Geology", "English", "History", "Economics", "Psychology"]
+    # pointer_range = (7.0, 10.0)
+
+    # num_preferences = int(input("Enter the number of preferences for each student: "))
+
+    # def generate_student():
+    #     name = fake.unique.first_name()
+    #     preferences = random.sample(subjects, k=num_preferences)
+    #     pointer = round(random.uniform(*pointer_range), 2)
+    #     return [name, department, preferences, pointer]
+
+    # # generate a list of 100 students
+    # students = [generate_student() for _ in range(100)]
+    #print(len(students))
+    # sort students based on pointer value (higher pointer comes first)
+    # students = sorted(students, key=lambda student: student[3], reverse=True)
+
+
+    # num = int(input("Enter the number of preferences to display: "))
+
+    # # count the number of appearances of each preference subject
+    # preference_subjects_count = {subject: 0 for subject in subjects}
+    # for i in range(num):
+    #     preference_subjects = [student[2][i] for student in students]
+    #     preference_subjects_count = {subject: preference_subjects_count[subject] + preference_subjects.count(subject) for subject in subjects}
+
+
+    # subject_preferences_count = {}
+    # total_appearances = {}
+    # for subject in subjects:
+    #     subject_preferences_count[subject] = [0] * num
+    #     total_appearances[subject] = 0
+
+    # # Create the directory to save the images
+
+    # for i in range(num):
+    #     preference_subjects = [student[2][i] for student in students]
+    #     subject_count = {subject: preference_subjects.count(subject) for subject in subjects}
+    #     for j, (subject, count) in enumerate(subject_count.items()):
+    #         subject_preferences_count[subject][i] = count
+    #         total_appearances[subject] += count
+
+    #     fig, ax = plt.subplots()
+    #     ax.pie(list(subject_count.values()), labels=list(subject_count.keys()), autopct='%1.1f%%', startangle=90)
+    #     ax.axis('equal')
+    #     ax.set_title(f"Preference {i+1}")
+    #     plt.savefig(f'Excel/preference_{i+1}.png')  # Save the image
+    #     plt.close()  # Close the figure to free memory
+
+    # for subject, count in subject_preferences_count.items():
+    #     print(subject, count, f"Total Appearances: {total_appearances[subject]}")
+
+    # # sort subjects based on their total appearances
+    # sorted_subjects = sorted(total_appearances.items(), key=lambda x: x[1], reverse=True)
+
+    # import matplotlib.pyplot as plt
+    # import numpy as np
+
+    # # Create a bar graph for sorted_subjects
+    # subjects = [subject for subject, _ in sorted_subjects]
+    # counts = [count for _, count in sorted_subjects]
+
+    # fig, ax = plt.subplots(figsize=(10,6))
+    # ax.bar(subjects, counts, color=[plt.cm.Blues(i/int(len(subjects)*1.5)) for i in reversed(range(2*len(subjects)))])
+    # ax.set_title("Total Appearances of Subjects")
+    # ax.set_xlabel("Subject")
+    # ax.set_ylabel("Total Appearances")
+    # ax.tick_params(axis='x', labelrotation=45, pad=10)
+    # plt.tight_layout()
+
+    # # Save the image in Excel folder
+    # plt.savefig("Excel/total_appearances.png", dpi=300)
+
+    # # Show the image
+    # #plt.show()
+
+
+    # # save the chart as a PNG image in the "Excel" folder
+    # fig.savefig("Excel/subject_appearances.png")
+    # # extract the top `num` subjects
+    # top_subjects = [subject for subject, count in sorted_subjects[:num]]
+
+    # # extract the count of the top `num` subjects
+    # top_subjects_count = [total_appearances[subject] for subject in top_subjects]
+
+
+
+    # print(f"\nTop {num} subjects by appearances:")
+    # for i in range(num):
+    #     print(f"{i+1}. {top_subjects[i]}: {top_subjects_count[i]}")
+        
+    # # sort the preferences by their count and extract the top `num` preferences
+    # sorted_preferences = sorted(preference_subjects_count.items(), key=lambda x: x[1], reverse=True)
+    # preferences = [preference for preference, count in sorted_preferences[:num]]
+
+    # min_batch_size = int(input("Enter minimum batch size: "))
+    # max_batch_size = int(len(students)) - int((num-1) * min_batch_size); 
+    # print(max_batch_size)
+    # # create empty lists for each preference subject
+    # lists_dict = {}
+    # for preference in preferences:
+    #     lists_dict[preference] = []
+
+    # # iterate over the students and allocate them to their top preference subject
+    # for student in students:
+    #     allocated = False
+    #     for preference in student[2]:
+    #         if preference in preferences and len(lists_dict[preference]) < max_batch_size:
+    #             lists_dict[preference].append(student)
+    #             allocated = True
+    #             break
+    #     if not allocated:
+    #         lists_dict[preferences[0]].append(student)
+
+    # # count the number of students in each preference subject list
+    # subject_student_count = {preference: len(lists_dict[preference]) for preference in preferences}
+
+    # # ensure that each preference subject has at least min_batch_size students in it
+    # for preference in preferences:
+    #     while subject_student_count[preference] < min_batch_size:
+    #         for student in students:
+    #             if preference in student[2] and student not in lists_dict[preference]:
+    #                 lists_dict[preference].append(student)
+    #                 subject_student_count[preference] += 1
+    #                 break
+
+    # # print the list of subjects and the students in each subject list
+    # for preference, students in lists_dict.items():
+    #     print(f"{preference}: {len(students)} students")
+    #     for student in students:
+    #         print(f"- {student[0]} ({student[3]})")
+
+
+    # # create a new workbook and select the active worksheet
+    # import xlsxwriter
+
+    # # create a new workbook and add a worksheet
+    # wb = xlsxwriter.Workbook('D:\Downloads\Excel\student_lists.xlsx')
+    # sheet = wb.add_worksheet()
+
+    # # define the header row and write it to the sheet
+    # header = ['Total Students', '']
+    # for subject in lists_dict:
+    #     header.append(f"{subject}")
+    # sheet.write_row(0, 0, header)
+
+    # # define the count row and write it to the sheet
+    # count_row = [len(students), '']
+    # for subject in lists_dict:
+    #     count_row.append(len(lists_dict[subject]))
+    # count_row.append('')
+    # sheet.write_row(1, 0, count_row)
+
+    # # define alignment for the header and count rows
+    # header_format = wb.add_format({'align': 'center', 'valign': 'vcenter'})
+    # sheet.set_row(0, None, header_format)
+    # sheet.set_row(1, None, header_format)
+
+    # # add a blank row after the count row
+    # sheet.merge_range(2, 0, 2, 2, '')
+
+    # row_num = 3
+    # header = ['Student Name', 'Department', 'Pointer','Subject','Approved']
+    # sheet.write_row(row_num, 0, header)
+    # # iterate over the subjects and write each subject's student list to the sheet
+    # row_num += 1 # starting row number
+
+    # for subject in lists_dict:
+    #     # add a blank row before starting a new subject's list
+    #     if row_num != 3:
+    #         sheet.merge_range(row_num, 0, row_num, 4, '')
+    #         row_num += 1
+
+    #     # write the subject name to the sheet
+    #     sheet.merge_range(row_num, 0, row_num, 4, subject)
+    #     sheet.write(row_num, 0, subject, header_format)
+    #     row_num += 1
+
+    #     # write each student's details to the sheet
+    #     for student in lists_dict[subject]:
+    #         name, department, _, pointer = student
+    #         row_data = [name, department, pointer, subject]
+    #         sheet.write_row(row_num, 0, row_data)
+    #         row_num += 1
+
+    # # adjust column widths and row heights
+    # # for col in range(num+3):
+    # #     sheet.set_column(col, col, len(header[col])+2)
+    # # for row in range(1, row_num):
+    # #     sheet.set_row(row, 15)
+
+    # # close the workbook
+    # wb.close()
+
+    # students = student.objects.all()
+    # # student_names = [student.stud_name for student in students]
+    # context = {'student_names': students}
     # return render(request, 'student_pref.html', context)
+    # # stud_name = student.objects.all()
+    # # stud_name = [stud_name for student in student]
+    # # context = {'stud_name': stud_name}
+    # # return render(request, 'student_pref.html', context)
 
 
 def student_detail(request, roll_no):

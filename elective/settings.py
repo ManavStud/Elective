@@ -58,17 +58,6 @@ LOGIN_REDIRECT_URL = '/'
 # LOGIN_REDIRECT_URL = '/'
 # LOGOUT_REDIRECT_URL='/'
 SOCIALACCOUNT_QUERY_EMAIL = True
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': ['profile', 'email'],
-#         'AUTH_PARAMS': {'access_type': 'online'},
-#         'APP': {
-#             'client_id': '562855670787-7st3aslkm4upu73ag1541l7inbbobru4.apps.googleusercontent.com',
-#             'secret': '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',
-#             'key': ''
-#         }
-#     }
-# }
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -114,7 +103,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'elective.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

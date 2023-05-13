@@ -2,7 +2,7 @@ from django.db import models
 
 class preference(models.Model):
     stud_name=models.CharField(max_length=100)
-    roll_no=models.IntegerField()
+    roll_no=models.BigIntegerField()
     sem=models.IntegerField()
     dept=models.CharField(max_length=10)
     pref1=models.CharField(max_length=100)
