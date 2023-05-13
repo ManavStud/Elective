@@ -32,10 +32,9 @@
                 <thead>
                     <tr>
                         <th scope="col">Subject</th>
-                        <th scope="col">Honors 1</th>
-                        <th scope="col">Honors 2</th>
-                        <th scope="col">Minors 1</th>
-                        <th scope="col">Minors 2</th>
+                        {% for hon_min in hon_min %}
+                        <th>{{hon_min}}</th>
+                        {% endfor %}
                     </tr>
                 </thead>
                 <tbody>
@@ -62,24 +61,21 @@
                     </tr>
                     <tr>
                         <td>Optional Subject 1</td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
+                        {% for hon_min in hon_min %}
+                        <th>{{hon_min}}</th>
+                        {% endfor %}
                     </tr>
                     <tr>
                         <td>Optional Subject 2</td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
+                        {% for hon_min in hon_min %}
+                        <th>{{hon_min}}</th>
+                        {% endfor %}
                     </tr>
                     <tr>
                         <td>Optional Subject 3</td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
-                        <td><input type="checkbox" checked class="subject_checkbox"></td>
+                        {% for hon_min in hon_min %}
+                        <th>{{hon_min}}</th>
+                        {% endfor %}
                     </tr>
                 </tbody>
             </table>

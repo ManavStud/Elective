@@ -135,7 +135,7 @@ def sem2(request):
         'my_list': exposure2,
         'compulsory_sem2':compulsory_sem2,
         'pref':options,
-        }
+    }
     return render(request, 'sem2.html', context)
 
 
@@ -157,7 +157,7 @@ def sem3(request):
     context = {
         #'my_list': my_list,
         'compulsory_sem3':compulsory_sem3
-        }
+    }
     return render(request, 'sem3.html', context)
     
 
@@ -168,7 +168,6 @@ def sem4(request):
     rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
-
     compulsory_list = subject.objects.filter(sem=4,type='N').values_list('sub_name',flat=True)
     compulsory_sem4 = list(compulsory_list)
     print("Se43: = ",compulsory_sem4)
@@ -424,8 +423,8 @@ def sem8(request):
     context = {'my_list_de5': my_list_de5}
 
     #kumbalitrance
-   # my_list = ['AI', 'ML', 'DSIP','IS','CC']
-   
+    # my_list = ['AI', 'ML', 'DSIP','IS','CC']
+
     my_list_de6 = subject.objects.filter(type='DE6',sem=8).values_list('sub_name',flat=True)
     my_list_de6 = list(my_list_de6) 
     print("de5: ",my_list_de6)
@@ -664,12 +663,13 @@ def course_selection(request):
         print(distinct_hon_min)
         if distinct_hon_min[0] not in hon_min:
             hon_min.append(distinct_hon_min[0])
-    email = request.user.email
+    email = 'chinmay.teli@somaiya.edu'
     print(email)
     
     rollno=student.objects.get(email=email)
     roll_fetch=rollno.roll_no
     print(roll_fetch)
+    print(hon_min)
     context = {
         'hon_min' : hon_min
     }
